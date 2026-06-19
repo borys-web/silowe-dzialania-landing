@@ -1,36 +1,60 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Landing — Mini-kurs „Silne Działania”
 
-## Getting Started
+Landing page dla płatnego mini-kursu (ruch z Meta Ads, 11 sekcji wg specyfikacji w `brief:/`).
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router) + **TypeScript**
+- **Tailwind CSS v4** (konfiguracja przez `@theme` w `app/globals.css`)
+- **Framer Motion 12** — jedyna biblioteka animacji
+- `next/font` (Inter + Sora, z `latin-ext` dla polskich znaków)
+- Deploy: **Vercel**
+
+## Uruchomienie lokalne
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Strona: [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Inne komendy:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build   # produkcyjny build
+npm run start   # serwer produkcyjny (po build)
+npm run lint    # ESLint
+```
 
-## Learn More
+## Struktura
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  layout.tsx        # html lang=pl, fonty, metadata/OG, slot Meta Pixel
+  page.tsx          # kompozycja sekcji (na razie placeholder fundamentu)
+  globals.css       # Tailwind v4 + paleta (ink/cream/red) + reduced-motion
+components/
+  ui/               # Section, CtaButton, Reveal
+  analytics/        # MetaPixel (slot)
+  sections/         # 11 sekcji landinga (kolejne etapy)
+  layout/           # StickyCtaBar / SmoothScroll (kolejne etapy)
+content/
+  copy.ts           # całe copy 1:1 (źródło prawdy)
+  site.config.ts    # cena (97 zł), CTA, Meta Pixel ID, flagi sekcji, autor
+lib/
+  motion.ts         # warianty animacji (house style)
+  useMotionVariant.ts  # redukcja ruchu (prefers-reduced-motion)
+  cn.ts
+public/images/      # zdjęcia (next/image)
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Konfiguracja
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Edytuj `content/site.config.ts`:
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- `price` — cena (obecnie `97`)
+- `cta.checkoutHref` — link do płatności / formularza (placeholder `#`)
+- `metaPixelId` — wpisz ID, aby aktywować Meta Pixel
+- `flags.showProofSection` — sekcja „Dowody” renderuje się tylko gdy `true`
+- `author.bio` / `author.facts` — placeholdery do uzupełnienia
