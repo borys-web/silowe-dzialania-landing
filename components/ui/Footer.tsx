@@ -8,7 +8,7 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="w-full border-t border-white/10 bg-ink px-5 py-10 text-cream sm:px-8">
+    <footer className="w-full border-t border-black/10 bg-ink px-5 py-10 text-cream sm:px-8">
       <div className="mx-auto flex w-full max-w-5xl flex-col items-center justify-between gap-4 text-sm text-muted-dark sm:flex-row">
         <p>
           &copy; {year} {siteConfig.author.name}

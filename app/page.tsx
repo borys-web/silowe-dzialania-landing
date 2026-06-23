@@ -1,49 +1,47 @@
 import { Hero } from "@/components/sections/Hero";
+import { Testimonials } from "@/components/sections/Testimonials";
 import { Recognition } from "@/components/sections/Recognition";
-import { ForWhom } from "@/components/sections/ForWhom";
-import { Diagnosis } from "@/components/sections/Diagnosis";
-import { Mechanism } from "@/components/sections/Mechanism";
-import { WhatYouGet } from "@/components/sections/WhatYouGet";
+import { System } from "@/components/sections/System";
 import { Author } from "@/components/sections/Author";
-import { ProofSection } from "@/components/sections/ProofSection";
 import { Faq } from "@/components/sections/Faq";
 import { Pricing } from "@/components/sections/Pricing";
-import { FinalCta } from "@/components/sections/FinalCta";
+import { AmbientFlux } from "@/components/ui/AmbientFlux";
 import { Footer } from "@/components/ui/Footer";
-import { ThreadSpine } from "@/components/ui/ThreadSpine";
+import { PromoTopBar } from "@/components/ui/PromoTopBar";
+import { RedThread } from "@/components/ui/RedThread";
+import { StickyMobileCta } from "@/components/ui/StickyMobileCta";
+import { siteConfig } from "@/content/site.config";
 
 /**
- * Kompozycja landinga (architektura v2). Kolejność zgodna ze specyfikacją.
- * 1. Hero ✓
- * 2. Rozpoznanie siebie ✓
- * 3. Dla kogo to jest / dla kogo nie ✓
- * 4. Diagnoza ✓
- * 5. Mechanizm ✓
- * 6. Co dokładnie dostajesz ✓
- * 7. Kim jestem — Wiktor Mariczew ✓
- * 8. Dowody — konkretne zmiany ✓ (widoczna: showProofSection=true, sloty „do uzupełnienia")
- * 9. FAQ / obiekcje ✓
- * 10. Cena / oferta ✓
- * 11. Finalne CTA + co dalej ✓
+ * Kompozycja landinga (architektura v3 — audyt strategiczny).
+ * Cel: usunięcie powtórzeń, jaśniejszy flow decyzyjny, unifikacja wizualna.
+ * 1. Hero (nowe zdjęcie) ✓
+ * 2. Testimoniale (Kuba + Szymon) ✓
+ * 3. Problem — „Ten sam dzień. W kółko." ✓
+ * 4. System — scalony Mechanizm + Co dostajesz (4 lekcje + mockup bundla) ✓
+ * 5. Autor (skrócony) ✓
+ * 6. FAQ ✓
+ * 7. Pricing + Final CTA (scalone: kroki Kupujesz → Mail → Lekcja 1) ✓
  */
 export default function Home() {
   return (
     <>
-      <ThreadSpine />
-      <main>
+      <PromoTopBar />
+      <AmbientFlux />
+      <RedThread />
+      <main className="organic-flow relative z-10">
         <Hero />
+        <Testimonials />
         <Recognition />
-        <ForWhom />
-        <Diagnosis />
-        <Mechanism />
-        <WhatYouGet />
+        <System />
         <Author />
-        <ProofSection />
         <Faq />
         <Pricing />
-        <FinalCta />
       </main>
-      <Footer />
+      <div className="relative z-10">
+        <Footer />
+      </div>
+      {siteConfig.flags.stickyMobileCta && <StickyMobileCta />}
     </>
   );
 }

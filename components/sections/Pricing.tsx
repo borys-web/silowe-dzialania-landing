@@ -3,49 +3,54 @@
 import { motion, useReducedMotion } from "framer-motion";
 import type { Variants } from "framer-motion";
 import { CtaButton } from "@/components/ui/CtaButton";
-import { SectionKicker } from "@/components/ui/SectionKicker";
+import { Countdown } from "@/components/ui/Countdown";
+import { PriceTag } from "@/components/ui/PriceTag";
 import { copy } from "@/content/copy";
-import { siteConfig, withPrice } from "@/content/site.config";
-import { EASE_HOUSE, VIEWPORT_ONCE } from "@/lib/motion";
+import {
+  formatPrice,
+  siteConfig,
+  withPrice,
+} from "@/content/site.config";
+import { SPRING_HOUSE, VIEWPORT_ONCE } from "@/lib/motion";
+import { useCountdown } from "@/lib/useCountdown";
 
 /**
  * Sekcja 10 — Cena / oferta + koszt bezczynności (ciemna).
- * Hierarchia: koszt bezczynności (H2) → zakres → cena → CTA → risk reversal.
- * Cena z site.config.ts (jedno miejsce zmiany). Bez badge'y/pilności.
- * prefers-reduced-motion → czysty fade.
+ * CRO: price anchoring (promo 47 zł obok przekreślonej 77 zł, etykieta -39%),
+ * countdown do promoEndsAt + komunikat „Potem cena wraca do 77 zł",
+ * oraz wzmocniony risk reversal (osobny panel z ikoną).
+ * Wszystkie liczby z site.config.ts. prefers-reduced-motion → czysty fade.
  */
 export function Pricing() {
   const { pricing } = copy;
   const reduce = useReducedMotion();
-
-  const priceLabel = `${siteConfig.price} ${siteConfig.currency}`;
-  // Zakres z body bez prefiksu ceny (single source: copy.pricing.body).
-  const priceCaption = pricing.body.replace("[CENA] zł", "").trim();
+  const { isExpired, mounted } = useCountdown(siteConfig.promoEndsAt);
+  const promoActive = !(mounted && isExpired);
 
   const header: Variants = reduce
     ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.4 } } }
     : {
         hidden: { opacity: 0, y: 16 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.5, ease: EASE_HOUSE } },
+        show: { opacity: 1, y: 0, transition: SPRING_HOUSE },
       };
 
   const card: Variants = reduce
     ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.4 } } }
     : {
-        hidden: { opacity: 0, y: 24 },
+        hidden: { opacity: 0, y: 24, scale: 0.98 },
         show: {
           opacity: 1,
           y: 0,
-          transition: { duration: 0.55, ease: EASE_HOUSE, staggerChildren: 0.1, delayChildren: 0.1 },
+          scale: 1,
+          transition: { ...SPRING_HOUSE, staggerChildren: 0.1, delayChildren: 0.1 },
         },
       };
   const item: Variants = reduce
     ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.4 } } }
     : {
-        hidden: { opacity: 0, y: 12 },
-        show: { opacity: 1, y: 0, transition: { duration: 0.45, ease: EASE_HOUSE } },
+        hidden: { opacity: 0, y: 20, scale: 0.98 },
+        show: { opacity: 1, y: 0, scale: 1, transition: SPRING_HOUSE },
       };
-  // Osobowość ruchu: „osiadanie" — cena schodzi z góry i spokojnie się układa (decyzja, ciężar).
   const priceVariant: Variants = reduce
     ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.4 } } }
     : {
@@ -54,7 +59,7 @@ export function Pricing() {
           opacity: 1,
           y: 0,
           scale: 1,
-          transition: { duration: 0.6, ease: EASE_HOUSE },
+          transition: SPRING_HOUSE,
         },
       };
 
@@ -62,74 +67,145 @@ export function Pricing() {
     <section
       id="cena"
       aria-label="Cena"
-      className="surface-ink-spotlight w-full scroll-mt-8 px-5 py-24 text-cream sm:px-8 sm:py-32"
+      className="section-shell surface-ink-spotlight relative w-full scroll-mt-8 overflow-hidden px-5 py-20 text-cream sm:px-8 sm:py-32"
     >
+      <div aria-hidden className="glow-orb absolute left-1/2 top-1/2 h-[30rem] w-[30rem] -translate-x-1/2 -translate-y-1/2 rounded-full bg-red/[0.12]" />
       <div className="mx-auto w-full max-w-2xl text-center">
-        <SectionKicker index="09" label="Oferta" theme="dark" className="justify-center" />
-        {/* Koszt bezczynności */}
         <motion.h2
           variants={header}
           initial="hidden"
           whileInView="show"
           viewport={VIEWPORT_ONCE}
-          className="mx-auto max-w-2xl font-display text-3xl font-extrabold leading-tight tracking-tight sm:text-5xl lg:text-6xl"
+          className="heading-display text-cream mx-auto max-w-2xl lg:text-6xl"
         >
           {pricing.h2}
         </motion.h2>
 
-        {/* Blok ofertowy */}
         <motion.div
           variants={card}
           initial="hidden"
           whileInView="show"
           viewport={VIEWPORT_ONCE}
-          className="mt-12 rounded-3xl border border-white/15 bg-ink-soft p-8 text-center shadow-2xl shadow-black/40 sm:p-10"
+          className="pricing-red-glow glass-panel panel-glow-center panel-elevated relative mt-12 rounded-[2rem] p-8 text-center sm:p-10"
         >
-          {/* Zakres */}
-          <motion.ul variants={item} className="mx-auto flex max-w-md flex-col items-center gap-3">
+          <motion.ul variants={item} className="relative mx-auto flex max-w-md flex-col items-center gap-3">
             {pricing.bullets.map((b) => (
-              <li key={b} className="flex items-start justify-center gap-3 text-center sm:items-center">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-cream/15 text-cream">
+              <motion.li key={b} variants={item} className="flex items-start justify-center gap-3 text-center sm:items-center">
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-red/15 text-red shadow-[0_0_18px_rgba(209,26,42,0.45)]">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="h-3 w-3">
                     <path d="M5 12.5l4.5 4.5L19 7" />
                   </svg>
                 </span>
                 <span className="text-base leading-snug text-cream/90">{b}</span>
-              </li>
+              </motion.li>
             ))}
           </motion.ul>
 
-          {/* Cena */}
+          {/* Cena + price anchoring */}
           <motion.div
             variants={priceVariant}
+            data-red-thread-node="pricing"
+            data-red-thread-position="above"
             className="relative mt-8 border-t border-white/10 pt-8 text-center"
           >
-            {/* Reflektor — ciepła, czerwona poświata skupiająca wzrok na cenie */}
             <span
               aria-hidden
-              className="pointer-events-none absolute left-1/2 top-6 h-32 w-56 -translate-x-1/2 rounded-full bg-red/20 blur-3xl"
+              className="pointer-events-none absolute left-1/2 top-6 h-36 w-64 -translate-x-1/2 rounded-full bg-red/[0.14] blur-3xl"
             />
-            <div className="relative flex items-baseline justify-center gap-3">
-              <span className="font-display text-6xl font-extrabold tracking-tight text-cream sm:text-7xl">
-                {priceLabel}
-              </span>
-            </div>
-            <p className="relative mt-2 text-sm text-muted-dark">{priceCaption}</p>
+            <PriceTag
+              expired={!promoActive}
+              size="lg"
+              showBadge={promoActive}
+              className="relative justify-center"
+            />
+            <p className="relative mt-3 text-sm text-cream/[0.58]">{pricing.body}</p>
           </motion.div>
+
+          {/* Countdown — pilność (tylko gdy promocja trwa) */}
+          {promoActive && (
+            <motion.div variants={item} className="mt-8 rounded-3xl border border-red/20 bg-red/[0.08] px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
+              <Countdown
+                targetIso={siteConfig.promoEndsAt}
+                variant="boxes"
+                autoSecondsBelow24h
+              />
+              <p className="mt-3 text-sm font-medium text-cream/[0.62]">
+                Potem cena wraca do {formatPrice(siteConfig.priceRegular)}.
+              </p>
+            </motion.div>
+          )}
 
           {/* CTA */}
           <motion.div variants={item} className="mt-8 flex flex-col items-center">
             <CtaButton
               href={siteConfig.cta.checkoutHref}
+              ariaLabel="Odbieram dostęp do mini-kursu za 47 zł"
               className="w-full text-lg sm:w-auto"
+              redThreadNode="pricing"
+              redThreadPosition="above"
             >
               {withPrice(pricing.cta)}
             </CtaButton>
-            {/* Risk reversal / gwarancja */}
-            <p className="mt-4 text-sm leading-relaxed text-muted-dark">
-              {pricing.riskReversal}
-            </p>
           </motion.div>
+
+          {/* Risk reversal — osobny panel z ikoną */}
+          <motion.div
+            variants={item}
+            className="glass-panel mt-8 flex items-start gap-4 rounded-2xl p-5 text-left"
+          >
+            <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-red/15 text-red">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" aria-hidden className="h-6 w-6">
+                <path d="M12 3l7 3v5c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6z" />
+                <path d="M9 12l2 2 4-4" />
+              </svg>
+            </span>
+            <div>
+              <p className="font-display text-base font-bold tracking-tight text-cream">
+                {pricing.guaranteeTitle}
+              </p>
+              <p className="mt-1 text-sm leading-relaxed text-muted-dark">
+                {pricing.riskReversal}
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+
+        {/* Co dzieje się po kliknięciu — 3 kroki (scalone z dawnej sekcji „Zacznij od 30 minut") */}
+        <motion.div
+          variants={header}
+          initial="hidden"
+          whileInView="show"
+          viewport={VIEWPORT_ONCE}
+          className="mt-14"
+        >
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-red">
+            {pricing.stepsTitle}
+          </p>
+          <ol className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:gap-0">
+            {pricing.steps.map((step, i) => (
+              <li key={step.label} className="flex flex-1 items-stretch">
+                <div className="glass-panel flex w-full flex-col items-center gap-2 rounded-2xl px-5 py-6 text-center">
+                  <span className="flex h-9 w-9 items-center justify-center rounded-full bg-red/15 font-display text-sm font-bold text-red">
+                    {i + 1}
+                  </span>
+                  <span className="font-display text-base font-bold tracking-tight text-cream">
+                    {step.label}
+                  </span>
+                  <span className="text-sm leading-snug text-cream/65">
+                    {step.detail}
+                  </span>
+                </div>
+                {i < pricing.steps.length - 1 && (
+                  <span
+                    aria-hidden
+                    className="hidden shrink-0 items-center px-3 text-2xl text-muted-light sm:flex"
+                  >
+                    &rarr;
+                  </span>
+                )}
+              </li>
+            ))}
+          </ol>
         </motion.div>
       </div>
     </section>

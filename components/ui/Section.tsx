@@ -29,7 +29,7 @@ export function Section({
       id={id}
       aria-label={ariaLabel}
       className={cn(
-        "w-full px-5 py-20 sm:px-8 sm:py-28",
+        "w-full px-5 py-20 sm:px-8 sm:py-32",
         theme === "dark" ? "bg-ink text-cream" : "bg-cream text-ink",
         className,
       )}

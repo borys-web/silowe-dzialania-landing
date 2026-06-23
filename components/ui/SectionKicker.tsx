@@ -1,54 +1,34 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
+import { motion } from "framer-motion";
 import { cn } from "@/lib/cn";
 import { EASE_HOUSE, VIEWPORT_ONCE } from "@/lib/motion";
+import { useSectionMotion } from "@/lib/sectionMotion";
 
 type SectionKickerProps = {
-  /** Numer sekcji, np. "01". Pomiń dla sekcji domykających. */
   index?: string;
   label: string;
-  theme?: "dark" | "light";
   className?: string;
 };
 
-/**
- * Etykieta sekcji: krótka kreska (fragment motywu „nici") + numer + label.
- * Buduje rytm scrolla i „systemowy" charakter strony. Monochrom (bez czerwieni).
- * Animacja: lekki fade + rise; prefers-reduced-motion → czysty fade.
- */
-export function SectionKicker({
-  index,
-  label,
-  theme = "dark",
-  className,
-}: SectionKickerProps) {
-  const reduce = useReducedMotion();
-
-  // Czerwona kreska = powracająca sygnatura marki przy każdej sekcji.
-  const indexColor = theme === "dark" ? "text-cream/55" : "text-ink/45";
-  const labelColor = theme === "dark" ? "text-muted-dark" : "text-muted-light";
+/** Etykieta sekcji — monochrom, subtelna kreska, reveal on scroll. */
+export function SectionKicker({ index, label, className }: SectionKickerProps) {
+  const { header, reduce } = useSectionMotion();
 
   return (
     <motion.div
-      initial={reduce ? { opacity: 0 } : { opacity: 0, y: 10 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      variants={header}
+      initial="hidden"
+      whileInView="show"
       viewport={VIEWPORT_ONCE}
-      transition={{ duration: 0.4, ease: EASE_HOUSE }}
+      transition={reduce ? undefined : { duration: 0.45, ease: EASE_HOUSE }}
       className={cn("mb-6 flex items-center gap-3", className)}
     >
-      <span aria-hidden className="h-px w-8 shrink-0 bg-red" />
+      <span aria-hidden className="h-px w-8 shrink-0 bg-gradient-to-r from-red via-electric to-transparent" />
       {index && (
-        <span className={cn("font-display text-sm font-bold tracking-wide", indexColor)}>
-          {index}
-        </span>
+        <span className="text-sm font-semibold tracking-wide text-red">{index}</span>
       )}
-      <span
-        className={cn(
-          "text-xs font-semibold uppercase tracking-[0.2em]",
-          labelColor,
-        )}
-      >
+      <span className="text-xs font-semibold uppercase tracking-[0.2em] text-cream/55">
         {label}
       </span>
     </motion.div>

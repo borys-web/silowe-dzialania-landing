@@ -9,17 +9,22 @@ import type { Variants, Transition } from "framer-motion";
  */
 
 export const EASE_HOUSE = [0.16, 1, 0.3, 1] as const;
+export const SPRING_HOUSE = {
+  type: "spring",
+  stiffness: 150,
+  damping: 24,
+  mass: 0.7,
+} as const;
 
 export const VIEWPORT_ONCE = { once: true, margin: "-100px" } as const;
 
 const baseTransition: Transition = {
-  duration: 0.5,
-  ease: EASE_HOUSE,
+  ...SPRING_HOUSE,
 };
 
 export const fadeUp: Variants = {
-  hidden: { opacity: 0, y: 16 },
-  show: { opacity: 1, y: 0, transition: baseTransition },
+  hidden: { opacity: 0, y: 20, scale: 0.98 },
+  show: { opacity: 1, y: 0, scale: 1, transition: baseTransition },
 };
 
 export const fadeIn: Variants = {
@@ -42,7 +47,7 @@ export const scaleIn: Variants = {
   show: {
     opacity: 1,
     scale: 1,
-    transition: { duration: 0.45, ease: EASE_HOUSE },
+    transition: SPRING_HOUSE,
   },
 };
 
@@ -50,7 +55,7 @@ export const lineDraw: Variants = {
   hidden: { scaleX: 0 },
   show: {
     scaleX: 1,
-    transition: { duration: 0.6, ease: EASE_HOUSE },
+    transition: SPRING_HOUSE,
   },
 };
 

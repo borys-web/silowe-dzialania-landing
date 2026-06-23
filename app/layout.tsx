@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Sora } from "next/font/google";
+import { Inter } from "next/font/google";
 import "./globals.css";
 import { MetaPixel } from "@/components/analytics/MetaPixel";
 import { siteConfig } from "@/content/site.config";
@@ -10,17 +10,11 @@ const inter = Inter({
   display: "swap",
 });
 
-const sora = Sora({
-  variable: "--font-sora",
-  subsets: ["latin", "latin-ext"],
-  weight: ["600", "700", "800"],
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: siteConfig.title,
   description: siteConfig.description,
+  robots: { index: true, follow: true },
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -28,14 +22,21 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     url: siteConfig.url,
     siteName: siteConfig.name,
+    images: [
+      {
+        url: "/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Sprawa na 10 minut. Zjadła Ci cały dzień? — mini-kurs Wiktora Mariczewa",
+      },
+    ],
   },
-  robots: { index: true, follow: true },
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e0e0f",
   width: "device-width",
   initialScale: 1,
+  themeColor: "#111114",
 };
 
 export default function RootLayout({
@@ -44,7 +45,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="pl" className={`${inter.variable} ${sora.variable} antialiased`}>
+    <html lang="pl" className={`${inter.variable} antialiased`}>
       <body className="min-h-dvh bg-ink text-cream">
         {children}
         <MetaPixel />

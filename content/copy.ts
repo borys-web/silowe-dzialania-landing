@@ -21,15 +21,17 @@ export type Testimonial = {
 
 export const copy = {
   hero: {
-    eyebrow: "MINI-KURS DLA PRZECIĄŻONYCH PRZEDSIĘBIORCÓW",
-    h1: "Sprawa na 10 minut. Zjadła Ci cały dzień?",
-    body: "Nie chodzi o lenistwo. Chodzi o zasób, który masz na cały dzień, a wraca Ci go na pół. 4 lekcje. 2 arkusze. Pierwsze ćwiczenie kończysz, zanim wystygnie kawa.",
+    eyebrow: "MINI-KURS · 4 LEKCJE · 47 ZŁ DO 29 CZERWCA",
+    h1: "Sprawa na 10 minut. Zjadła Ci cały dzień.",
+    body: "Wiesz, co masz robić. Robisz co innego. Nie dlatego, że jesteś leniwy — dlatego, że Twoja głowa pracuje w tle nad tym, czego nie domknąłeś. 4 lekcje. 2 arkusze. Pierwsze ćwiczenie kończysz, zanim wystygnie kawa.",
     bullets: [
-      "Masz firmę i prawie wszystko jest na Twojej głowie",
-      "Na zewnątrz dowozisz wynik, w środku jedziesz na rezerwie",
-      "„Zaraz to zrobię” trwa u Ciebie cały dzień, nie 10 minut",
+      "Masz firmę i prawie wszystko leci przez Ciebie",
+      "Na zewnątrz dowozisz. W środku jedziesz na oparach.",
+      "Lista zadań nie maleje. Tylko się przesuwa na jutro.",
     ],
-    cta: "Odbieram mini-kurs",
+    cta: "Odbieram dostęp za 47 zł →",
+    // Pasek zaufania (social proof) — liczby z site.config.ts (author.facts).
+    trust: "200+ przedsiębiorców · 16 spółek · business tracking",
   },
 
   recognition: {
@@ -74,56 +76,53 @@ export const copy = {
     ],
   },
 
-  mechanism: {
-    h2: "4 krótkie lekcje. Nie motywacja. Mechanika.",
-    body: "Każda lekcja ma jeden rezultat. Nie „zrozumiesz siebie” — zobaczysz, zdiagnozujesz, zrobisz.",
+  /**
+   * Scalona sekcja „System" — łączy dawne „Mechanizm" (proces / 4 lekcje)
+   * z „Co dostajesz" (bundle). Jeden blok: CO ROBISZ + CO DOSTAJESZ w jednym widoku.
+   */
+  system: {
+    h2: "4 lekcje. 2 arkusze. Jeden prosty system na dzień.",
+    body: "Nie dostajesz teorii do obejrzenia kiedyś. Dostajesz pierwszy krok, który robisz dziś — w trakcie kursu.",
     lessons: [
       {
         tag: "Lekcja 1",
         title: "Diagnoza",
-        result:
-          "zobaczysz dokładnie, gdzie ucieka Twój czas i energia, zamiast zgadywać",
+        result: "Zobaczysz dokładnie, gdzie ucieka Twój czas i energia.",
       },
       {
         tag: "Lekcja 2",
         title: "Przyczyna",
-        result:
-          "zrozumiesz, dlaczego deklaracje nie działają, a konkretne działania — tak",
+        result: "Zrozumiesz, dlaczego deklaracje nie działają.",
       },
       {
         tag: "Lekcja 3",
         title: "Wyrzut z głowy",
-        result:
-          "30 minut ćwiczenia, po którym zobaczysz cały ciężar, który Cię przeciąża",
+        result: "Zamkniesz pętle, które mielą się w tle.",
       },
       {
         tag: "Lekcja 4",
         title: "System dnia",
-        result: "prosty układ, który zmienia „dzisiaj” w „jutro” — bez heroizmu",
+        result: "Ułożysz dzień tak, żeby działał nawet bez motywacji.",
       },
     ] satisfies LessonCard[],
-  },
-
-  whatYouGet: {
-    h2: "4 lekcje. 2 arkusze. 30 minut na pierwszy efekt.",
-    body: "Wiesz precyzyjnie, co odbierasz, zanim klikniesz.",
-    bullets: [
-      "4 lekcje wideo, każda 10–15 minut — bez przegadania",
-      "2 arkusze do pracy — wypełniasz w trakcie, nie „kiedyś później”",
-      "dostęp od razu po zapisie, zostaje u Ciebie na zawsze",
-      "pierwsze ćwiczenie zajmuje 12 minut, nie pół dnia",
+    badges: [
+      "4 lekcje po 10–15 minut",
+      "2 arkusze robocze",
+      "dostęp od razu, bez subskrypcji",
     ],
-    cta: "Odbieram mini-kurs",
+    cta: "Odbieram dostęp za 47 zł →",
   },
 
   author: {
-    h2: "Pracuję z ludźmi wysokiej odpowiedzialności — nie z ciekawskimi.",
+    h2: "Pracuję z ludźmi wysokiej odpowiedzialności. Nie z ciekawskimi.",
     // body + facts w site.config.ts → author.bio, author.facts
   },
 
   proof: {
     h2: "Nie obiecuję. Pokazuję, co się zmieniło u innych.",
     intro: "Trzy krótkie, konkretne zmiany — nie recenzje, nie gwiazdki.",
+    // Nagłówek wzmacniający wiarygodność nad kafelkami testimoniali.
+    credibility: "Prawdziwi właściciele firm. Konkretny czyn dokonany, nie opinia.",
     // Case study w formacie wideo-testimonial (struktura jak wiktormariczew.pl).
     testimonials: [
       {
@@ -156,63 +155,55 @@ export const copy = {
   },
 
   faq: {
-    h2: "Pytania, które na pewno masz.",
+    h2: "Pytania, które wszyscy zadają.",
     items: [
       {
         question: "Czy to nie jest kolejne naciąganie na hajs?",
         answer:
-          "Nie obiecuję transformacji za [CENA] zł. Dostajesz 4 lekcje i 2 arkusze z jednym celem — żebyś po pierwszym ćwiczeniu zobaczył dokładnie, co zjada Twój czas. Resztę oceniasz sam, dziś wieczorem.",
+          "Nie obiecuję Ci transformacji za [CENA]. Dostajesz 4 lekcje i 2 arkusze z jednym celem: po pierwszym ćwiczeniu masz zobaczyć dokładnie, co zjada Twój czas. Jeśli nie zobaczysz nic nowego — piszesz, oddaję pieniądze. Resztę oceniasz sam, dziś wieczorem.",
       },
       {
         question: "A jeśli zapłacę i nic się nie zmieni?",
         answer:
-          "Pierwsze ćwiczenie robisz w 30 minut. Jeśli nie pokaże Ci niczego nowego o Twoim dniu — napisz, oddamy pieniądze.",
+          "Pierwsze ćwiczenie robisz w 30 minut i od razu widzisz efekt — albo nie. Jeśli nie pokaże Ci niczego nowego, dostajesz zwrot. Ryzykujesz jedną kawę, nie weekend.",
       },
       {
-        question: "Czy to zadziała u mnie, czy mam zbyt specyficzną sytuację?",
+        question: "Czy to zadziała u mnie? Mam specyficzną sytuację.",
         answer:
-          "Kurs nie jest o Twojej branży. Jest o mechanizmie, który działa tak samo niezależnie od tego, czy prowadzisz agencję, sklep czy gabinet.",
+          "Kurs nie jest o Twojej branży. Jest o tym, jak Twoja głowa pracuje w tle nad sprawami, których nie domknąłeś. To działa tak samo w poligrafii, marketingu i finansach. Specyfiką jest człowiek pod presją — nie rodzaj firmy.",
       },
       {
-        question: "Czy znajdę na to czas?",
+        question: "Czy nie zacznę i nie dokończę — jak z innymi kursami?",
         answer:
-          "4 lekcje po 10–15 minut. Pierwszy efekt — tego samego wieczoru.",
-      },
-      {
-        question: "Czy nie zacznę i nie dokończę?",
-        answer:
-          "Materiał jest krótki celowo. Nie buduje napięcia na „odcinek 12” — każda lekcja działa samodzielnie.",
+          "Materiał jest krótki celowo. Nie ma 8 godzin wideo do 'przerobienia kiedyś'. Jest jeden konkretny rezultat na lekcję i pierwszy efekt w 30 minut. Nie ma czego nie dokończyć.",
       },
       {
         question: "Czy po kursie nie wrócę do starego schematu?",
         answer:
-          "Lekcja 4 to system dnia, nie jednorazowe ćwiczenie. Dla części osób kolejnym krokiem jest rozmowa ze mną — ale o tym później.",
+          "Lekcja 4 to system dnia — nie zryw motywacyjny. Nie opierasz się na 'chceniu', tylko na prostym układzie, który działa, gdy motywacji nie ma. Dlatego nie wraca się do punktu zero.",
       },
     ] satisfies FaqItem[],
-    cta: "Odbieram mini-kurs",
+    cta: "Odbieram dostęp za 47 zł →",
   },
 
   pricing: {
     h2: "Jedno przepalone popołudnie kosztuje więcej niż ten kurs.",
-    body: "[CENA] zł za 4 lekcje, 2 arkusze i dostęp na zawsze.",
+    body: "za kurs, arkusze i dostęp na zawsze",
     bullets: [
-      "4 lekcje wideo + 2 arkusze do pracy",
-      "dostęp od razu, bez czekania",
-      "zostaje u Ciebie na zawsze, wracasz, kiedy chcesz",
+      "4 lekcje wideo + 2 arkusze robocze",
+      "Dostęp od razu, zostaje na zawsze",
     ],
-    cta: "Kupuję mini-kurs za [CENA] zł",
+    cta: "Kupuję mini-kurs za 47 zł →",
+    // Tytuł panelu gwarancji (risk reversal).
+    guaranteeTitle: "Zero ryzyka po Twojej stronie",
     riskReversal:
-      "Jeśli pierwsze ćwiczenie nie pokaże Ci niczego nowego — napisz, oddamy pieniądze.",
-  },
-
-  finalCta: {
-    h2: "Zacznij od 30 minut.",
-    body: "Dostęp dostajesz od razu po zakupie. Zaczynasz od lekcji 1. Pierwsze ćwiczenie robisz tego samego wieczoru — nie czekasz na „lepszy moment”. Mini-kurs to pierwszy krok. Dla części osób kolejnym jest rozmowa ze mną — ale o tym później.",
-    bullets: [
-      "klikasz „Kupuję mini-kurs”",
-      "dostęp na mail w ciągu kilku minut",
-      "zaczynasz lekcję 1 tego samego wieczoru",
+      "Jeśli pierwsze ćwiczenie nie pokaże Ci nic nowego — piszesz, oddajemy pieniądze. Bez pytań. Bez formularzy.",
+    // Scalone z dawnej sekcji „Zacznij od 30 minut" — co dzieje się po kliknięciu.
+    stepsTitle: "Zaczynasz dziś wieczorem.",
+    steps: [
+      { label: "Kupujesz", detail: "Klikasz „Kupuję mini-kurs”." },
+      { label: "Mail w 2 minuty", detail: "Dostęp ląduje na Twojej skrzynce." },
+      { label: "Zaczynasz lekcję 1", detail: "Pierwsze ćwiczenie jeszcze dziś." },
     ],
-    cta: "Kupuję mini-kurs",
   },
 } as const;

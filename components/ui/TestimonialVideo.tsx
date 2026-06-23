@@ -38,11 +38,11 @@ export function TestimonialVideo({
   if (!showEmbed) {
     return (
       <div
-        className="relative aspect-square w-full overflow-hidden rounded-[12px] bg-ink/[0.06]"
+        className="relative aspect-square w-full overflow-hidden rounded-[12px] bg-black/[0.04]"
         aria-label={`${title} — wideo do uzupełnienia`}
       >
         <div className="absolute inset-0 flex flex-col items-center justify-center gap-2.5">
-          <span className="flex size-12 items-center justify-center rounded-full bg-ink text-cream">
+          <span className="flex size-12 items-center justify-center rounded-full bg-ink-soft text-cream shadow-sm">
             <PlayIcon />
           </span>
           <span className="text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-muted-light">
@@ -58,19 +58,20 @@ export function TestimonialVideo({
       <button
         type="button"
         onClick={() => setActive(true)}
-        className="group relative aspect-square w-full overflow-hidden rounded-[12px] bg-ink text-left"
+        className="group relative aspect-square w-full overflow-hidden rounded-[12px] bg-ink-soft text-left"
         aria-label={`Odtwórz wideo: ${title}`}
       >
         <Image
           src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
           alt=""
           fill
+          unoptimized
           sizes="(max-width: 768px) 100vw, 384px"
           className="object-cover"
         />
-        <span className="absolute inset-0 bg-ink/15 transition-colors group-hover:bg-ink/25" />
+        <span className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-black/18" />
         <span className="absolute inset-0 flex items-center justify-center">
-          <span className="flex size-12 items-center justify-center rounded-full bg-red text-cream shadow-[0_0_14px_rgba(209,26,42,0.45)] transition-transform group-hover:scale-105">
+          <span className="flex size-12 items-center justify-center rounded-full bg-red text-white shadow-[0_0_14px_rgba(209,26,42,0.35)] transition-transform group-hover:scale-105">
             <PlayIcon />
           </span>
         </span>
@@ -79,7 +80,7 @@ export function TestimonialVideo({
   }
 
   return (
-    <div className="relative aspect-square w-full overflow-hidden rounded-[12px] bg-ink">
+    <div className="relative aspect-square w-full overflow-hidden rounded-[12px] bg-ink-soft">
       <iframe
         src={`https://www.youtube-nocookie.com/embed/${videoId}?rel=0&modestbranding=1&autoplay=1`}
         title={title}

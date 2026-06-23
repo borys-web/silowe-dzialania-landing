@@ -41,7 +41,7 @@ components/
   layout/           # StickyCtaBar / SmoothScroll (kolejne etapy)
 content/
   copy.ts           # całe copy 1:1 (źródło prawdy)
-  site.config.ts    # cena (97 zł), CTA, Meta Pixel ID, flagi sekcji, autor
+  site.config.ts    # ceny (promo 47 zł / regular 77 zł), promoEndsAt, CTA, Meta Pixel ID, flagi, autor
 lib/
   motion.ts         # warianty animacji (house style)
   useMotionVariant.ts  # redukcja ruchu (prefers-reduced-motion)
@@ -53,7 +53,8 @@ public/images/      # zdjęcia (next/image)
 
 Edytuj `content/site.config.ts`:
 
-- `price` — cena (obecnie `97`)
+- `pricePromo` / `priceRegular` — cena promocyjna (`47`) i regularna (`77`, pokazywana przekreślona)
+- `promoEndsAt` — koniec promocji (ISO timestamp); zasila countdown i przełączenie ceny
 - `cta.checkoutHref` — link do płatności / formularza (placeholder `#`)
 - `metaPixelId` — wpisz ID, aby aktywować Meta Pixel
 - `flags.showProofSection` — sekcja „Dowody” renderuje się tylko gdy `true`
