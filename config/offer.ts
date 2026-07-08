@@ -5,12 +5,12 @@
 export const OFFER = {
   priceRegular: 77,
   pricePromo: 47,
-  promoEndsAt: new Date("2026-07-20T23:59:59+02:00"), // TODO: właściciel ustawia realną datę
+  promoEndsAt: new Date("2026-07-16T23:59:59+02:00"),
   currency: "zł",
 } as const;
 
-/** TODO: podpiąć link płatności przed live */
-export const PURCHASE_URL = "#";
+export const PURCHASE_URL =
+  "https://www.naffy.io/silowe-dzialania/planowanie-dlaczego-sie-sypie-i-jak-je-poskladac-tow";
 
 export const PRICE_ANCHOR = "#cena";
 
