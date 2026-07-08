@@ -2,7 +2,6 @@ import { siteConfig } from "@/content/site.config";
 
 /**
  * Minimalny footer — spokojne zamknięcie strony.
- * Bez nawigacji marketingowej; nazwa autora + rok + drobne linki prawne (placeholdery).
  */
 export function Footer() {
   const year = new Date().getFullYear();
@@ -15,13 +14,13 @@ export function Footer() {
         </p>
         <nav aria-label="Stopka" className="flex items-center gap-6">
           <a
-            href="#"
+            href="/polityka-prywatnosci"
             className="transition-colors hover:text-cream focus-visible:text-cream focus-visible:outline-none"
           >
             Polityka prywatności
           </a>
           <a
-            href="#"
+            href="/regulamin"
             className="transition-colors hover:text-cream focus-visible:text-cream focus-visible:outline-none"
           >
             Regulamin
