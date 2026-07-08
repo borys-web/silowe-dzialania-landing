@@ -11,9 +11,14 @@ import {
 import { useCallback, useRef, type MouseEvent } from "react";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { PlanningPattern } from "@/components/ui/PlanningPattern";
+import {
+  ctaAriaLabel,
+  heroEyebrow,
+  PRICE_ANCHOR,
+  withPrice,
+} from "@/config/offer";
 import { copy } from "@/content/copy";
 import { siteConfig } from "@/content/site.config";
-import { EASE_HOUSE, SPRING_HOUSE } from "@/lib/motion";
 import { useMediaQuery } from "@/lib/useMediaQuery";
 
 const PARALLAX_SPRING = { stiffness: 150, damping: 22, mass: 0.6 };
@@ -76,15 +81,6 @@ export function Hero() {
     mouseY.set(0);
   }, [mouseX, mouseY]);
 
-  const wiktorInitial = reduceMotion
-    ? { opacity: 1, y: 0 }
-    : { opacity: 0, y: 20 };
-  const wiktorAnimate = { opacity: 1, y: 0 };
-  const cardInitial = reduceMotion
-    ? { opacity: 1, y: 0, x: 0 }
-    : { opacity: 0, y: 28, x: -16 };
-  const cardAnimate = { opacity: 1, y: 0, x: 0 };
-
   return (
     <section
       ref={sectionRef}
@@ -93,12 +89,10 @@ export function Hero() {
       onMouseLeave={handleMouseLeave}
       className="hero-section section-shell relative isolate flex min-h-[calc(100dvh-var(--promo-bar-height))] w-full items-center overflow-hidden px-5 text-cream sm:px-8"
     >
-      {/* Warstwa 0 — tło */}
       <div aria-hidden className="hero-bg">
         <PlanningPattern variant="hero" className="opacity-[0.04] sm:opacity-[0.06]" />
       </div>
 
-      {/* Mobile — Wiktor jako przyciemnione tło */}
       <div aria-hidden className="hero-wiktor-mobile lg:hidden">
         <div className="hero-wiktor-mobile__img">
           <Image
@@ -115,7 +109,6 @@ export function Hero() {
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-6xl py-20 sm:py-24">
-        {/* Scena 3D — karta i Wiktor w jednym kontenerze, nachodzą na siebie */}
         <div className="hero-stage">
           <motion.div
             aria-hidden
@@ -123,16 +116,7 @@ export function Hero() {
             style={parallaxEnabled ? { x: glowX, y: glowY } : undefined}
           />
 
-          {/* Warstwa 1 — Wiktor (za kartą, nachodzi na nią od prawej) */}
-          <motion.div
-            className="hero-wiktor-desktop hidden lg:block"
-            initial={wiktorInitial}
-            animate={wiktorAnimate}
-            transition={{
-              ...SPRING_HOUSE,
-              delay: reduceMotion ? 0 : 0.05,
-            }}
-          >
+          <div className="hero-wiktor-desktop hidden lg:block">
             <motion.figure
               className="hero-wiktor-desktop__figure"
               style={parallaxEnabled ? { x: wiktorX, y: wiktorY } : undefined}
@@ -149,19 +133,9 @@ export function Hero() {
                 />
               </div>
             </motion.figure>
-          </motion.div>
+          </div>
 
-          {/* Warstwa 2 — szklana karta (przód sceny) */}
-          <motion.div
-            className="hero-card-wrap"
-            initial={cardInitial}
-            animate={cardAnimate}
-            transition={{
-              ...SPRING_HOUSE,
-              delay: reduceMotion ? 0 : 0.18,
-              ease: EASE_HOUSE,
-            }}
-          >
+          <div className="hero-card-wrap">
             <motion.div
               className="hero-card-parallax"
               style={parallaxEnabled ? { x: cardX, y: cardY } : undefined}
@@ -177,7 +151,7 @@ export function Hero() {
                       aria-hidden
                       className="h-px w-8 shrink-0 bg-gradient-to-r from-red via-electric to-transparent"
                     />
-                    {hero.eyebrow}
+                    {heroEyebrow()}
                   </p>
 
                   <h1 className="text-balance font-display text-4xl font-extrabold leading-[0.98] tracking-[-0.07em] text-cream drop-shadow-[0_2px_24px_rgba(0,0,0,0.45)] sm:text-6xl lg:text-6xl xl:text-7xl">
@@ -190,14 +164,13 @@ export function Hero() {
 
                   <div className="pt-1">
                     <CtaButton
-                      href={siteConfig.cta.primaryHref}
-                      ariaLabel="Odbieram dostęp do mini-kursu za 47 zł"
+                      href={PRICE_ANCHOR}
+                      ariaLabel={ctaAriaLabel()}
                       className="w-full text-lg sm:w-auto"
-                      withArrow={false}
                       redThreadNode="cta"
                       redThreadPosition="above"
                     >
-                      {hero.cta}
+                      {withPrice(hero.cta)}
                     </CtaButton>
                   </div>
 
@@ -229,18 +202,8 @@ export function Hero() {
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
-      </div>
-
-      <div
-        aria-hidden
-        className="absolute bottom-6 left-1/2 z-20 hidden -translate-x-1/2 flex-col items-center gap-2 text-cream/50 sm:flex"
-      >
-        <span className="text-[0.7rem] font-semibold uppercase tracking-[0.2em]">
-          Przewiń
-        </span>
-        <span className="scroll-cue text-lg leading-none">&darr;</span>
       </div>
     </section>
   );
