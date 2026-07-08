@@ -1,3 +1,4 @@
+import type { CSSProperties } from "react";
 import Image from "next/image";
 
 export type FloatingReviewItem = {
@@ -5,13 +6,14 @@ export type FloatingReviewItem = {
   width: number;
   height: number;
   alt: string;
+  rotate: number;
 };
 
 type FloatingReviewBubbleProps = {
   item: FloatingReviewItem;
 };
 
-/** Wycięty screenshot opinii — pełna rozdzielczość, bez obrotu. */
+/** Wycięty screenshot opinii — 30% oryginalnego rozmiaru, lekki kąt. */
 export function FloatingReviewBubble({ item }: FloatingReviewBubbleProps) {
   return (
     <figure className="flex w-full items-end justify-center">
@@ -21,8 +23,13 @@ export function FloatingReviewBubble({ item }: FloatingReviewBubbleProps) {
         width={item.width}
         height={item.height}
         unoptimized
-        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 480px"
-        className="h-auto w-full max-w-full"
+        sizes="(max-width: 640px) 28vw, 14vw"
+        className="review-screenshot h-auto w-[30%] max-w-none select-none"
+        style={
+          {
+            "--review-rotate": `${item.rotate}deg`,
+          } as CSSProperties
+        }
       />
     </figure>
   );

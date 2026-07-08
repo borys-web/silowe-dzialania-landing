@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Wycina tło ze screenshotów — flood-fill od krawędzi, bez psucia krawędzi bańek."""
+"""Wycina tło ze screenshotów — flood-fill + defringe, bez halo na krawędziach."""
 
 from __future__ import annotations
 
@@ -48,30 +48,83 @@ def flood_fill_mask(is_candidate: np.ndarray) -> np.ndarray:
     return remove
 
 
-def apply_alpha(data: np.ndarray, remove: np.ndarray) -> np.ndarray:
-    alpha = np.where(remove, 0, 255).astype(np.uint8)
-    data[:, :, 3] = alpha
-    return data
+def neighbors_transparent(alpha: np.ndarray) -> np.ndarray:
+    h, w = alpha.shape
+    t = alpha == 0
+    out = np.zeros((h, w), dtype=bool)
+    for dy, dx in ((-1, 0), (1, 0), (0, -1), (0, 1), (-1, -1), (-1, 1), (1, -1), (1, 1)):
+        shifted = np.zeros_like(t)
+        ys = slice(max(0, -dy), h - max(0, dy))
+        xs = slice(max(0, -dx), w - max(0, dx))
+        yd = slice(max(0, dy), h - max(0, -dy))
+        xd = slice(max(0, dx), w - max(0, -dx))
+        shifted[yd, xd] = t[ys, xs]
+        out |= shifted
+    return out
 
 
-def cutout_light(path: Path, out: Path, white_min: int = 248) -> None:
+def cutout_light(path: Path, out: Path) -> None:
     data = np.array(Image.open(path).convert("RGBA"), dtype=np.uint8)
     rgb = data[:, :, :3].astype(np.int16)
     min_rgb = np.min(rgb, axis=2)
-    is_candidate = min_rgb >= white_min
-    remove = flood_fill_mask(is_candidate)
-    data = apply_alpha(data, remove)
-    trim(Image.fromarray(data)).save(out, compress_level=3)
+
+    # Tło: białe piksele połączone z krawędzią
+    remove = flood_fill_mask(min_rgb >= 250)
+    alpha = np.where(remove, 0, 255).astype(np.uint8)
+
+    # Defringe: jasne piksele przy krawędzi przezroczystości (halo po wycinaniu)
+    fringe = (min_rgb >= 246) & neighbors_transparent(alpha)
+    alpha[fringe] = 0
+
+    data[:, :, 3] = alpha
+    trim(Image.fromarray(data)).save(out, compress_level=1)
 
 
-def cutout_dark(path: Path, out: Path, dark_max: int = 14) -> None:
+def cutout_dark(path: Path, out: Path) -> None:
     data = np.array(Image.open(path).convert("RGBA"), dtype=np.uint8)
     rgb = data[:, :, :3].astype(np.int16)
     max_rgb = np.max(rgb, axis=2)
-    is_candidate = max_rgb <= dark_max
-    remove = flood_fill_mask(is_candidate)
-    data = apply_alpha(data, remove)
-    trim(Image.fromarray(data)).save(out, compress_level=3)
+
+    # Próbka tła z krawędzi — na dark mode nie jest czyste #000
+    edge_samples = np.concatenate(
+        [
+            rgb[0, :, :].reshape(-1, 3),
+            rgb[-1, :, :].reshape(-1, 3),
+            rgb[:, 0, :].reshape(-1, 3),
+            rgb[:, -1, :].reshape(-1, 3),
+        ],
+    )
+    bg_level = int(np.percentile(np.max(edge_samples, axis=1), 90)) + 2
+
+    remove = flood_fill_mask(max_rgb <= bg_level)
+    alpha = np.where(remove, 0, 255).astype(np.uint8)
+
+    # Defringe ciemnych pikseli przy krawędzi
+    fringe = (max_rgb <= bg_level + 4) & neighbors_transparent(alpha)
+    alpha[fringe] = 0
+
+    data[:, :, 3] = alpha
+    trim(Image.fromarray(data)).save(out, compress_level=1)
+
+
+def audit(path: Path) -> None:
+    data = np.array(Image.open(path).convert("RGBA"))
+    alpha = data[:, :, 3]
+    rgb = data[:, :, :3]
+    h, w = alpha.shape
+    corners = [alpha[0, 0], alpha[0, w - 1], alpha[h - 1, 0], alpha[h - 1, w - 1]]
+    fringe_light = ((alpha > 0) & (np.min(rgb, axis=2) >= 248)).sum()
+    fringe_dark = ((alpha > 0) & (np.max(rgb, axis=2) <= 22)).sum()
+    print(
+        path.name,
+        data.shape[1::-1],
+        "corner_alpha",
+        corners,
+        "light_fringe",
+        int(fringe_light),
+        "dark_fringe",
+        int(fringe_dark),
+    )
 
 
 def main() -> None:
@@ -80,8 +133,9 @@ def main() -> None:
     cutout_light(SRC / "avatar-2.png", OUT / "review-2.png")
     cutout_light(SRC / "avatar-3.png", OUT / "review-3.png")
     cutout_dark(SRC / "avatar-4.png", OUT / "review-4.png")
+    print("--- audit ---")
     for p in sorted(OUT.glob("review-*.png")):
-        print(p.name, Image.open(p).size)
+        audit(p)
 
 
 if __name__ == "__main__":
