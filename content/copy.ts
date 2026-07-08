@@ -1,7 +1,7 @@
 /**
  * Całe copy landinga 1:1 ze specyfikacji (Final copy).
  * Trzymane jako typowane obiekty — komponenty importują stąd, nie hardkodują tekstu.
- * Znacznik [CENA] jest podstawiany funkcją withPrice() z site.config.ts.
+ * Znacznik [CENA] jest podstawiany funkcją withPrice() z config/offer.ts.
  */
 
 export type FaqItem = { question: string; answer: string };
@@ -21,7 +21,6 @@ export type Testimonial = {
 
 export const copy = {
   hero: {
-    eyebrow: "MINI-KURS · 4 LEKCJE · 47 ZŁ DO 29 CZERWCA",
     h1: "Sprawa na 10 minut. Zjadła Ci cały dzień.",
     body: "Wiesz, co masz robić. Robisz co innego. Nie dlatego, że jesteś leniwy — dlatego, że Twoja głowa pracuje w tle nad tym, czego nie domknąłeś. 4 lekcje. 2 arkusze. Pierwsze ćwiczenie kończysz, zanim wystygnie kawa.",
     bullets: [
@@ -29,7 +28,7 @@ export const copy = {
       "Na zewnątrz dowozisz. W środku jedziesz na oparach.",
       "Lista zadań nie maleje. Tylko się przesuwa na jutro.",
     ],
-    cta: "Odbieram dostęp za 47 zł →",
+    cta: "Odbieram dostęp za [CENA] zł",
     // Pasek zaufania (social proof) — liczby z site.config.ts (author.facts).
     trust: "200+ przedsiębiorców · 16 spółek · business tracking",
   },
@@ -110,7 +109,7 @@ export const copy = {
       "2 arkusze robocze",
       "dostęp od razu, bez subskrypcji",
     ],
-    cta: "Odbieram dostęp za 47 zł →",
+    cta: "Odbieram dostęp za [CENA] zł",
   },
 
   author: {
@@ -183,7 +182,7 @@ export const copy = {
           "Lekcja 4 to system dnia — nie zryw motywacyjny. Nie opierasz się na 'chceniu', tylko na prostym układzie, który działa, gdy motywacji nie ma. Dlatego nie wraca się do punktu zero.",
       },
     ] satisfies FaqItem[],
-    cta: "Odbieram dostęp za 47 zł →",
+    cta: "Odbieram dostęp za [CENA] zł",
   },
 
   pricing: {
@@ -193,7 +192,7 @@ export const copy = {
       "4 lekcje wideo + 2 arkusze robocze",
       "Dostęp od razu, zostaje na zawsze",
     ],
-    cta: "Kupuję mini-kurs za 47 zł →",
+    cta: "Kupuję mini-kurs za [CENA] zł",
     // Tytuł panelu gwarancji (risk reversal).
     guaranteeTitle: "Zero ryzyka po Twojej stronie",
     riskReversal:
