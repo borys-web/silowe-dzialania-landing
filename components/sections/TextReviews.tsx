@@ -24,7 +24,7 @@ export function TextReviews() {
         <div className="reviews-float__grid" role="list" aria-label="Opinie uczestników kursu">
           {textReviews.items.map((item) => (
             <div
-              key={item.name + item.layout}
+              key={item.src}
               role="listitem"
               className={cn(reviewLayoutClass[item.layout])}
             >
