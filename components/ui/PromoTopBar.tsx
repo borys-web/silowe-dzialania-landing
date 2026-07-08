@@ -3,8 +3,13 @@
 import { useEffect } from "react";
 import { Countdown } from "@/components/ui/Countdown";
 import {
-  siteConfig,
-} from "@/content/site.config";
+  formatPrice,
+  isPromoActive,
+  OFFER,
+  PRICE_ANCHOR,
+  promoEndsAtIso,
+  topBarCtaLabel,
+} from "@/config/offer";
 import { cn } from "@/lib/cn";
 import { useCountdown } from "@/lib/useCountdown";
 
@@ -13,13 +18,15 @@ export const PROMO_BAR_HEIGHT_PX = 40;
 
 /**
  * Globalny sticky top bar z licznikiem promocji.
- * Znika po wygaśnięciu. Rezerwuje miejsce w layoucie (spacer) — brak skoku treści.
- * Ustawia --promo-bar-height na :root dla scroll-margin kotwic.
+ * Znika po wygaśnięciu lub gdy licznik nie ma czego odliczać.
+ * Rezerwuje miejsce w layoucie (spacer) — brak skoku treści.
  */
 export function PromoTopBar() {
-  const { isExpired, mounted } = useCountdown(siteConfig.promoEndsAt);
+  const promoEndsAt = promoEndsAtIso();
+  const { isExpired, mounted } = useCountdown(promoEndsAt);
+  const promoActive = isPromoActive();
 
-  const hidden = mounted && isExpired;
+  const hidden = !promoActive || !mounted || isExpired;
 
   useEffect(() => {
     const root = document.documentElement;
@@ -57,21 +64,25 @@ export function PromoTopBar() {
         <div className="mx-auto flex h-full w-full max-w-6xl items-center justify-between gap-2 px-3 sm:px-6">
           <div className="flex min-w-0 flex-1 items-center gap-2 sm:gap-3">
             <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-cream/50" />
-            <p className="truncate text-[0.68rem] font-semibold leading-none text-cream/72 sm:text-xs">
-              <span className="hidden min-[380px]:inline">Promocja kończy się za</span>
-              <span className="min-[380px]:hidden">Zostało</span>
+            <p className="min-w-0 truncate text-[0.68rem] font-semibold leading-none text-cream/72 sm:text-xs">
+              <span className="hidden sm:inline">
+                {formatPrice(OFFER.pricePromo)} zamiast {formatPrice(OFFER.priceRegular)} — oferta kończy się za{" "}
+              </span>
+              <span className="sm:hidden">
+                {OFFER.pricePromo} zł zamiast {OFFER.priceRegular} zł — kończy się za{" "}
+              </span>
+              <Countdown
+                targetIso={promoEndsAt}
+                variant="inline"
+                autoSecondsBelow24h
+                className="inline text-[0.68rem] font-bold leading-none text-cream sm:text-xs"
+              />
             </p>
-            <Countdown
-              targetIso={siteConfig.promoEndsAt}
-              variant="inline"
-              autoSecondsBelow24h
-              className="shrink-0 text-[0.68rem] font-bold leading-none text-cream sm:text-xs"
-            />
           </div>
 
           <a
-            href={siteConfig.cta.primaryHref}
-            aria-label="Odbieram dostęp do mini-kursu za 47 zł"
+            href={PRICE_ANCHOR}
+            aria-label={topBarCtaLabel()}
             className={cn(
               "inline-flex shrink-0 items-center justify-center rounded-full",
               "h-8 border border-white/10 bg-white/[0.04] px-3.5 text-xs font-bold text-white shadow-[0_10px_28px_rgba(0,0,0,0.2)] backdrop-blur-2xl",
@@ -80,12 +91,11 @@ export function PromoTopBar() {
               "min-w-[44px] sm:px-4 sm:text-sm",
             )}
           >
-            Odbieram
+            {topBarCtaLabel()}
           </a>
         </div>
       </div>
 
-      {/* Spacer — rezerwuje miejsce pod fixed bar (identyczna wysokość) */}
       <div
         aria-hidden
         className="shrink-0 pt-[env(safe-area-inset-top,0px)]"

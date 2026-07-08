@@ -23,9 +23,9 @@ export function countdownSegments(
   state: Countdown,
   autoSecondsBelow24h: boolean,
 ): CountdownSegment[] {
-  const { days, hours, minutes, seconds, total, mounted } = state;
-  const show = (n: number) => (mounted ? pad(n) : "--");
-  const showDay = (n: number) => (mounted ? String(n) : "--");
+  const { days, hours, minutes, seconds, total } = state;
+  const show = (n: number) => pad(n);
+  const showDay = (n: number) => String(n);
 
   if (countdownDisplayMode(total, autoSecondsBelow24h) === "urgent") {
     return [

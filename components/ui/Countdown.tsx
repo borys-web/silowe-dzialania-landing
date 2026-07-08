@@ -33,7 +33,7 @@ export function Countdown({
   const state = useCountdown(targetIso);
   const { isExpired, mounted } = state;
 
-  if (mounted && isExpired) return null;
+  if (!mounted || isExpired) return null;
 
   const aria = countdownAriaLabel(state, autoSecondsBelow24h);
 
