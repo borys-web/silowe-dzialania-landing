@@ -6,16 +6,16 @@ import { useId, useState } from "react";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { cn } from "@/lib/cn";
 import { copy } from "@/content/copy";
-import { siteConfig, withPrice } from "@/content/site.config";
+import {
+  ctaAriaLabel,
+  PRICE_ANCHOR,
+  withPrice,
+} from "@/config/offer";
 import { EASE_HOUSE, VIEWPORT_ONCE } from "@/lib/motion";
 
 /**
  * Sekcja 9 — FAQ / obiekcje (ciemna).
- * Cel: zdjąć ostatnie racjonalne bariery przed CTA.
- * Accordion: jedno pytanie otwarte naraz; domyślnie otwarte pierwsze (najmocniejsza obiekcja:
- * „naciąganie" — od razu rozbrojona, sygnalizuje transparentność, zwiększa zaangażowanie).
- * Odpowiedź: height 0→auto + fade (~280ms), chevron rotate 0→180°.
- * prefers-reduced-motion → bez animacji wysokości/rotacji, czysty fade.
+ * Accordion: domyślnie otwarte pierwsze dwa pytania (najmocniejsze obiekcje).
  */
 
 type AccordionItemProps = {
@@ -93,7 +93,9 @@ function AccordionItem({ question, answer, isOpen, onToggle, reduce }: Accordion
 export function Faq() {
   const { faq } = copy;
   const reduce = useReducedMotion();
-  const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const [openIndices, setOpenIndices] = useState<Set<number>>(
+    () => new Set([0, 1]),
+  );
 
   const header: Variants = reduce
     ? { hidden: { opacity: 0 }, show: { opacity: 1, transition: { duration: 0.4 } } }
@@ -141,8 +143,15 @@ export function Faq() {
               <AccordionItem
                 question={item.question}
                 answer={withPrice(item.answer)}
-                isOpen={openIndex === i}
-                onToggle={() => setOpenIndex((prev) => (prev === i ? null : i))}
+                isOpen={openIndices.has(i)}
+                onToggle={() =>
+                  setOpenIndices((prev) => {
+                    const next = new Set(prev);
+                    if (next.has(i)) next.delete(i);
+                    else next.add(i);
+                    return next;
+                  })
+                }
                 reduce={reduce ?? false}
               />
             </motion.div>
@@ -156,11 +165,8 @@ export function Faq() {
           viewport={VIEWPORT_ONCE}
           className="mt-12"
         >
-          <CtaButton
-            href={siteConfig.cta.primaryHref}
-            ariaLabel="Odbieram dostęp do mini-kursu za 47 zł"
-          >
-            {faq.cta}
+          <CtaButton href={PRICE_ANCHOR} ariaLabel={ctaAriaLabel()}>
+            {withPrice(faq.cta)}
           </CtaButton>
         </motion.div>
       </div>

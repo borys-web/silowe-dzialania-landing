@@ -2,7 +2,7 @@ import { cn } from "@/lib/cn";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { PlanningPattern } from "@/components/ui/PlanningPattern";
 import { copy } from "@/content/copy";
-import { siteConfig } from "@/content/site.config";
+import { ctaAriaLabel, PRICE_ANCHOR, withPrice } from "@/config/offer";
 
 /*
   Sekcja „System" — Mechanika / Bundle.
@@ -338,11 +338,11 @@ export function System() {
         {/* CTA — pojedyncze, centralne */}
         <div className="mt-10 flex justify-center">
           <CtaButton
-            href={siteConfig.cta.primaryHref}
-            ariaLabel="Odbieram dostęp do mini-kursu za 47 zł"
+            href={PRICE_ANCHOR}
+            ariaLabel={ctaAriaLabel()}
             className="text-lg"
           >
-            {system.cta}
+            {withPrice(system.cta)}
           </CtaButton>
         </div>
       </div>
