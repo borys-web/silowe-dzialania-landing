@@ -3,10 +3,10 @@
 import { cn } from "@/lib/cn";
 import {
   formatPrice,
-  promoDiscountPercent,
+  OFFER,
   PROMO_DAYS,
-  siteConfig,
-} from "@/content/site.config";
+  promoDiscountPercent,
+} from "@/config/offer";
 
 type Size = "sm" | "md" | "lg";
 
@@ -42,7 +42,7 @@ export function PriceTag({
   showBadge = false,
   className,
 }: PriceTagProps) {
-  const { pricePromo, priceRegular } = siteConfig;
+  const { pricePromo, priceRegular } = OFFER;
 
   if (expired) {
     return (

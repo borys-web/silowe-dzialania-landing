@@ -8,9 +8,13 @@ import { PriceTag } from "@/components/ui/PriceTag";
 import { copy } from "@/content/copy";
 import {
   formatPrice,
-  siteConfig,
+  OFFER,
+  PRICE_ANCHOR,
+  promoEndsAtIso,
+  PURCHASE_URL,
   withPrice,
-} from "@/content/site.config";
+  ctaAriaLabel,
+} from "@/config/offer";
 import { SPRING_HOUSE, VIEWPORT_ONCE } from "@/lib/motion";
 import { useCountdown } from "@/lib/useCountdown";
 
@@ -24,7 +28,7 @@ import { useCountdown } from "@/lib/useCountdown";
 export function Pricing() {
   const { pricing } = copy;
   const reduce = useReducedMotion();
-  const { isExpired, mounted } = useCountdown(siteConfig.promoEndsAt);
+  const { isExpired, mounted } = useCountdown(promoEndsAtIso());
   const promoActive = !(mounted && isExpired);
 
   const header: Variants = reduce
@@ -112,6 +116,23 @@ export function Pricing() {
               aria-hidden
               className="pointer-events-none absolute left-1/2 top-6 h-36 w-64 -translate-x-1/2 rounded-full bg-red/[0.14] blur-3xl"
             />
+            <div className="relative mb-4 flex items-center justify-center gap-2">
+              <svg
+                aria-hidden
+                className="h-4 w-4 shrink-0 text-red"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M2.166 4.999A11.954 11.954 0 0010 1.944 11.954 11.954 0 0017.834 5c.11.65.166 1.32.166 2.001 0 5.225-3.34 9.67-8 11.317C5.34 16.67 2 12.225 2 7c0-.682.057-1.35.166-2.001zm11.541 3.708a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z"
+                  clipRule="evenodd"
+                />
+              </svg>
+              <span className="text-sm font-semibold text-red">
+                Ryzykujesz jedną kawę, nie weekend.
+              </span>
+            </div>
             <PriceTag
               expired={!promoActive}
               size="lg"
@@ -125,12 +146,12 @@ export function Pricing() {
           {promoActive && (
             <motion.div variants={item} className="mt-8 rounded-3xl border border-red/20 bg-red/[0.08] px-4 py-5 shadow-[inset_0_1px_0_rgba(255,255,255,0.08)]">
               <Countdown
-                targetIso={siteConfig.promoEndsAt}
+                targetIso={promoEndsAtIso()}
                 variant="boxes"
                 autoSecondsBelow24h
               />
               <p className="mt-3 text-sm font-medium text-cream/[0.62]">
-                Potem cena wraca do {formatPrice(siteConfig.priceRegular)}.
+                Potem cena wraca do {formatPrice(OFFER.priceRegular)}.
               </p>
             </motion.div>
           )}
@@ -138,8 +159,8 @@ export function Pricing() {
           {/* CTA */}
           <motion.div variants={item} className="mt-8 flex flex-col items-center">
             <CtaButton
-              href={siteConfig.cta.checkoutHref}
-              ariaLabel="Odbieram dostęp do mini-kursu za 47 zł"
+              href={PURCHASE_URL}
+              ariaLabel={ctaAriaLabel()}
               className="w-full text-lg sm:w-auto"
               redThreadNode="pricing"
               redThreadPosition="above"
