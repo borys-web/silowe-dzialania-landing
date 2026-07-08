@@ -8,14 +8,12 @@ export function Testimonials() {
       title: "Firma poligraficzna",
       quote: "Przestałem być pracownikiem we własnej firmie.",
       videoId: "RbPGwhnj1rA",
-      videoUrl: "https://www.youtube.com/watch?v=RbPGwhnj1rA",
     },
     {
       name: "Szymon",
       title: "Firma finansowa",
       quote: "Domyka więcej i odzyskałem czas dla rodziny.",
       videoId: "MHEj8HTgH_I",
-      videoUrl: "https://www.youtube.com/watch?v=MHEj8HTgH_I",
     },
   ];
 
@@ -39,7 +37,6 @@ export function Testimonials() {
             title={testimonial.title}
             quote={testimonial.quote}
             videoId={testimonial.videoId}
-            videoUrl={testimonial.videoUrl}
           />
         ))}
       </div>

@@ -14,14 +14,7 @@ import { siteConfig } from "@/content/site.config";
 
 /**
  * Kompozycja landinga (architektura v3 — audyt strategiczny).
- * Cel: usunięcie powtórzeń, jaśniejszy flow decyzyjny, unifikacja wizualna.
- * 1. Hero (nowe zdjęcie) ✓
- * 2. Testimoniale (Kuba + Szymon) ✓
- * 3. Problem — „Ten sam dzień. W kółko." ✓
- * 4. System — scalony Mechanizm + Co dostajesz (4 lekcje + mockup bundla) ✓
- * 5. Autor (skrócony) ✓
- * 6. FAQ ✓
- * 7. Pricing + Final CTA (scalone: kroki Kupujesz → Mail → Lekcja 1) ✓
+ * 1. Hero → 2. Problem → 3. System → 4. Autor → 5. Testimoniale → 6. FAQ → 7. Pricing
  */
 export default function Home() {
   return (
@@ -31,10 +24,10 @@ export default function Home() {
       <RedThread />
       <main className="organic-flow relative z-10">
         <Hero />
-        <Testimonials />
         <Recognition />
         <System />
         <Author />
+        <Testimonials />
         <Faq />
         <Pricing />
       </main>
