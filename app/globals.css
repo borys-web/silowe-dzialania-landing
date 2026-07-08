@@ -428,6 +428,17 @@ body {
   will-change: transform;
 }
 
+@media (min-width: 1024px) {
+  .hero-bg__glow {
+    grid-column: 1 / -1;
+    grid-row: 1;
+    right: 6%;
+    bottom: 10%;
+    width: min(40%, 400px);
+    height: 70%;
+  }
+}
+
 .hero-stage {
   position: relative;
   display: flex;
@@ -438,9 +449,13 @@ body {
 
 @media (min-width: 1024px) {
   .hero-stage {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(240px, 0.82fr);
+    gap: clamp(1.25rem, 3vw, 2.75rem);
+    align-items: end;
     min-height: min(78vh, 720px);
     perspective: 1400px;
-    perspective-origin: 28% 46%;
+    perspective-origin: 32% 46%;
   }
 }
 
@@ -449,18 +464,32 @@ body {
   top: 0;
   right: -6%;
   bottom: 0;
-  z-index: 10;
+  z-index: 5;
   width: min(50%, 500px);
   height: 100%;
   pointer-events: none;
   transform: translateX(-16%);
 }
 
+@media (min-width: 1024px) {
+  .hero-wiktor-desktop {
+    position: relative;
+    top: auto;
+    right: auto;
+    bottom: auto;
+    z-index: 1;
+    width: 100%;
+    height: min(68vh, 600px);
+    transform: none;
+    align-self: end;
+    grid-column: 2;
+    grid-row: 1;
+  }
+}
+
 @media (min-width: 1280px) {
   .hero-wiktor-desktop {
-    right: -4%;
-    width: min(48%, 520px);
-    transform: translateX(-18%);
+    height: min(72vh, 640px);
   }
 }
 
@@ -534,12 +563,23 @@ body {
   will-change: transform;
 }
 
+@media (min-width: 1024px) {
+  .hero-card-wrap {
+    max-width: none;
+    width: 100%;
+    align-self: center;
+    z-index: 2;
+    grid-column: 1;
+    grid-row: 1;
+  }
+}
+
 .hero-card {
   position: relative;
   isolation: isolate;
   border-radius: 1.5rem;
   padding: 1.5rem;
-  background: rgba(8, 9, 13, 0.42);
+  background: rgba(8, 9, 13, 0.68);
   backdrop-filter: blur(12px) saturate(160%);
   -webkit-backdrop-filter: blur(12px) saturate(160%);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -560,26 +600,16 @@ body {
 @media (min-width: 1024px) {
   .hero-card-wrap {
     margin-left: 0;
-    transform: translateZ(24px);
+    transform: translateZ(12px);
   }
 
   .hero-card {
-    transform: rotateY(8deg) rotateX(2deg);
+    transform: rotateY(4deg) rotateX(1deg);
     box-shadow:
       inset 0 1px 0 rgba(255, 255, 255, 0.12),
       inset 0 -1px 0 rgba(255, 255, 255, 0.04),
       0 32px 88px rgba(0, 0, 0, 0.55),
       0 16px 40px rgba(0, 0, 0, 0.32);
-  }
-
-  .hero-wiktor-desktop {
-    transform: translateX(-16%) translateZ(8px);
-  }
-
-  @media (min-width: 1280px) {
-    .hero-wiktor-desktop {
-      transform: translateX(-18%) translateZ(8px);
-    }
   }
 }
 

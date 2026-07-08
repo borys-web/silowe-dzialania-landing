@@ -2,6 +2,7 @@ import { Hero } from "@/components/sections/Hero";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Recognition } from "@/components/sections/Recognition";
 import { System } from "@/components/sections/System";
+import { TextReviews } from "@/components/sections/TextReviews";
 import { Author } from "@/components/sections/Author";
 import { Faq } from "@/components/sections/Faq";
 import { Pricing } from "@/components/sections/Pricing";
@@ -14,7 +15,7 @@ import { siteConfig } from "@/content/site.config";
 
 /**
  * Kompozycja landinga (architektura v3 — audyt strategiczny).
- * 1. Hero → 2. Problem → 3. System → 4. Autor → 5. Testimoniale → 6. FAQ → 7. Pricing
+ * 1. Hero → 2. Problem → 3. System → 4. Opinie → 5. Autor → 6. Testimoniale → 7. FAQ → 8. Pricing
  */
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <Hero />
         <Recognition />
         <System />
+        <TextReviews />
         <Author />
         <Testimonials />
         <Faq />

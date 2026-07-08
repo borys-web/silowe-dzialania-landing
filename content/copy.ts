@@ -112,6 +112,45 @@ export const copy = {
     cta: "Odbieram dostęp za [CENA] zł",
   },
 
+  textReviews: {
+    h2: "Co mówią po kursie",
+    intro: "Prawdziwe wiadomości od uczestników — bez scenariusza, bez gwiazdek.",
+    items: [
+      {
+        avatar: "/images/reviews/avatar-1.png",
+        paragraphs: [
+          "Przed kursem moje planowanie było jednym wielkim chaosem. Brałam na siebie za dużo, zapomniałam o ważnych sprawach i skupiałam się na zadaniach, które nie przybliżały mnie do celu.",
+          "Po szkoleniu wiele mi się poukładało. Zrozumiałam, skąd bierze się ten chaos, nauczyłam się wyznaczać priorytety i odzyskałam czas oraz spokój w głowie.",
+          "Nie jest idealnie, ale dziś działam bardziej świadomie i w zgodzie ze sobą. Jeśli chcesz lepiej planować i odzyskać kontrolę nad swoim czasem, ten kurs naprawdę warto przejść.",
+        ],
+      },
+      {
+        avatar: "/images/reviews/avatar-2.png",
+        paragraphs: [
+          "Zawsze wiedziałem, że planowanie to ważny temat i wydawało mi się, że jestem w tym dobry. Niestety, wokół niewiele na to wskazywało. Wyznaczałem sobie nierealne do osiągnięcia cele i miałem do siebie pretensję o brak ich realizacji. Nie brałem pod uwagę ile tak naprawdę zajmują mi proste czynności dnia codziennego. Dzień się kończył, a ja byłem w połowie zaplanowanych rzeczy. Współpraca z Wiktorem dała mi przede wszystkim:",
+          "1) Zdefiniowanie problemu (bo od tego należy zacząć);",
+          "2) Zbudowanie systemu do zarządzania swoim czasem — w odniesieniu do tego ile faktycznie co zajmuje, co z tego jest zbędne i co z tego może zrobić kto inny;",
+          "3) Lepsze poznanie siebie i swoich możliwości — również w kontekście planowania (między innymi wybór najistotniejszych rzeczy, które z jednej strony realnie mogę zrobić, z drugiej mogę je zrobić dobrze).",
+          "Myślę, że w tej chwili — dzięki bardziej realistycznemu podejściu do planowania — jestem w stanie osiągnąć znacznie lepsze efekty, jednocześnie mniej się przy tym męcząc (zarówno fizycznie jak i psychicznie). Jako praktyk — serdecznie polecam.",
+        ],
+      },
+      {
+        avatar: "/images/reviews/avatar-3.png",
+        paragraphs: [
+          "Przed kursem miałam trochę chaos w życiu i planowaniu. Wydawało mi się, że planuję dobrze, ale tak naprawdę planowałam za intensywnie i w ogóle nie zostawiałam sobie miejsca na odpoczynek. Przez 2–3 miesiące działałam na pełnych obrotach, a później organizm po prostu mnie odcinał i zmuszał do regeneracji. Nie zdawałam sobie sprawy, że po prostu wyczerpuję swoje zasoby.",
+          "Dzięki Wiktorowi przede wszystkim nauczyłam się zarządzać właśnie zasobami i zrozumiałam, że ich ilość jest ograniczona. Nauczyłam się zauważać, kiedy je tracę, co na to wpływa i jak je odbudowywać. Dzięki temu teraz pracuję i żyję dużo bardziej wydajnie, ale bez takich zjazdów jak wcześniej. Do tego zaczęłam analizować swoje życie z różnych stron — zdrowia, pracy, biznesu, relacji czy finansów — korzystając z narzędzi, które dostałam od Wiktora.",
+        ],
+      },
+      {
+        avatar: "/images/reviews/avatar-4.png",
+        paragraphs: [
+          "Planowanie — temat rzeka. Robiłem dużo podejść do planowania i zawsze kończyło się tak samo — czułem że zawodzę, że nie potrafię zrealizować tego co zaplanowałem i czułem się jeszcze gorzej. Wszystko zmieniło się gdy Wiktor pokazał mi jak tak naprawdę powinno się planować. Tu nie liczy się ilość zadań ale priorytety. Czy to co mam zrobić jest dla mnie ważne? Czy przybliża mnie do celu? A może wcale nie muszę tego robić?",
+          "Teraz planuję każdy tydzień. Plan jest elastyczny i nie jestem niewolnikiem planu, ale dzięki niemu wiem co mam robić, a to daje dużą jasność działania i zmniejsza poziom stresu. Dzięki Wiktor 👊",
+        ],
+      },
+    ],
+  },
+
   author: {
     h2: "Pracuję z ludźmi wysokiej odpowiedzialności. Nie z ciekawskimi.",
     // body + facts w site.config.ts → author.bio, author.facts
