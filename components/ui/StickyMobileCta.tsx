@@ -12,6 +12,7 @@ import {
   ctaAriaLabel,
 } from "@/config/offer";
 import { siteConfig } from "@/content/site.config";
+import { trackInitiateCheckout } from "@/lib/fbq";
 import { useCountdown } from "@/lib/useCountdown";
 
 /**
@@ -66,7 +67,7 @@ export function StickyMobileCta() {
                     <span className="font-display text-2xl font-extrabold leading-none tracking-tight text-cream">
                       {formatPrice(OFFER.pricePromo)}
                     </span>
-                    <span className="text-sm font-semibold text-cream/45 line-through decoration-red decoration-2">
+                    <span className="text-sm font-semibold text-cream/60 line-through decoration-red decoration-2">
                       {formatPrice(OFFER.priceRegular)}
                     </span>
                   </div>
@@ -86,6 +87,7 @@ export function StickyMobileCta() {
 
             <a
               href={PURCHASE_URL}
+              onClick={trackInitiateCheckout}
               aria-label={ctaAriaLabel()}
               className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_34px_rgba(0,0,0,0.24)] backdrop-blur-2xl transition-[background-color,border-color] duration-200 hover:border-white/20 hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
             >

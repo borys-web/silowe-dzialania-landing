@@ -108,7 +108,7 @@ export function Hero() {
             >
               <div className="hero-wiktor__mask">
                 <Image
-                  src="/images/wiktor-hero.png"
+                  src="/images/wiktor-hero.webp"
                   alt=""
                   fill
                   unoptimized

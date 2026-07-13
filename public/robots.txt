@@ -1,6 +1,4 @@
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /.next
 
-Sitemap: https://example.com/sitemap.xml
+Sitemap: https://silowe-dzialania-landing.vercel.app/sitemap.xml

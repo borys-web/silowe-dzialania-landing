@@ -11,6 +11,7 @@ import {
   topBarCtaLabel,
 } from "@/config/offer";
 import { cn } from "@/lib/cn";
+import { trackInitiateCheckout } from "@/lib/fbq";
 import { useCountdown } from "@/lib/useCountdown";
 
 /** Wysokość paska treści (px) — bez safe-area. */
@@ -82,6 +83,7 @@ export function PromoTopBar() {
 
           <a
             href={PURCHASE_URL}
+            onClick={trackInitiateCheckout}
             aria-label={topBarCtaLabel()}
             className={cn(
               "inline-flex shrink-0 items-center justify-center rounded-full",

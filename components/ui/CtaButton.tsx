@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 import { cn } from "@/lib/cn";
+import { trackInitiateCheckout } from "@/lib/fbq";
 import { SPRING_HOUSE } from "@/lib/motion";
 
 type CtaButtonProps = {
@@ -32,6 +33,7 @@ export function CtaButton({
   return (
     <motion.a
       href={href}
+      onClick={trackInitiateCheckout}
       aria-label={ariaLabel}
       data-red-thread-node={redThreadNode}
       data-red-thread-position={redThreadNode ? redThreadPosition : undefined}

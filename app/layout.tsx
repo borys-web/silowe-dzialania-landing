@@ -15,6 +15,7 @@ export const metadata: Metadata = {
   title: siteConfig.title,
   description: siteConfig.description,
   robots: { index: true, follow: true },
+  alternates: { canonical: "/" },
   openGraph: {
     title: siteConfig.title,
     description: siteConfig.description,
@@ -27,9 +28,15 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Sprawa na 10 minut. Zjadła Ci cały dzień? — mini-kurs Wiktora Mariczewa",
+        alt: "Sprawa na 10 minut. Zjadła Ci cały dzień? - mini-kurs Wiktora Mariczewa",
       },
     ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.title,
+    description: siteConfig.description,
+    images: ["/og-image.jpg"],
   },
 };
 

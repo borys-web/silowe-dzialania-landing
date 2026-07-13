@@ -20,7 +20,7 @@ export function TextReviews() {
         <p className="body-copy mt-4 text-base text-cream/70 sm:mt-5 sm:text-lg">
           {textReviews.intro}
         </p>
-        <p className="mt-3 text-xs text-cream/45">{textReviews.disclaimer}</p>
+        <p className="mt-3 text-xs text-cream/60">{textReviews.disclaimer}</p>
       </header>
 
       <div className="mt-10 sm:mt-14">
