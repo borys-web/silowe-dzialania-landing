@@ -101,21 +101,6 @@ export function Hero() {
             style={parallaxEnabled ? { x: glowX, y: glowY } : undefined}
           />
 
-          {/* Portret Wiktora — tylko mobile/tablet, ukryty na desktopie */}
-          <div aria-hidden className="hero-wiktor-mobile lg:hidden">
-            <div className="hero-wiktor-mobile__img">
-              <Image
-                src="/images/wiktor-hero.png"
-                alt=""
-                fill
-                unoptimized
-                preload
-                sizes="(max-width: 1023px) 80vw, 0px"
-                className="object-contain object-bottom"
-              />
-            </div>
-          </div>
-
           <div className="hero-wiktor-desktop hidden lg:block">
             <motion.figure
               className="hero-wiktor-desktop__figure"
