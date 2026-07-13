@@ -113,7 +113,7 @@ export const copy = {
   },
 
   textReviews: {
-    h2: "Prawdziwe wiadomości po kursie.",
+    h2: "Co ludzie zobaczyli po kursie.",
     intro:
       "Nie obiecujemy magicznej przemiany. Tak piszą ludzie, którzy zaczęli pracować z zasobami.",
     disclaimer: "Pisownia oryginalna. Publikujemy za zgodą autorów.",

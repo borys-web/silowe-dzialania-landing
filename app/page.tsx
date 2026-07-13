@@ -15,7 +15,8 @@ import { siteConfig } from "@/content/site.config";
 
 /**
  * Kompozycja landinga (architektura v3 — audyt strategiczny).
- * 1. Hero → 2. Problem → 3. System → 4. Opinie → 5. Autor → 6. Testimoniale → 7. FAQ → 8. Pricing
+ * 1. Hero → 2. Problem → 3. System → 4. Autor → 5. Testimoniale (wideo) → 6. Opinie (czat) → 7. FAQ → 8. Pricing
+ * Logika dowodu: najpierw KTO uczy, potem dowód na osobę (wideo), potem dowód na produkt (screeny).
  */
 export default function Home() {
   return (
@@ -27,9 +28,9 @@ export default function Home() {
         <Hero />
         <Recognition />
         <System />
-        <TextReviews />
         <Author />
         <Testimonials />
+        <TextReviews />
         <Faq />
         <Pricing />
       </main>

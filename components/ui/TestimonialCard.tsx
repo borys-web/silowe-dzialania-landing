@@ -12,6 +12,7 @@ type DirectTestimonialCardProps = {
   title: string;
   quote: string;
   videoId: string;
+  thumbnailAlt?: string;
 };
 
 type CopyTestimonialCardProps = {
@@ -36,7 +37,15 @@ function PlayIcon() {
   );
 }
 
-function VideoPlayer({ videoId, title }: { videoId: string; title: string }) {
+function VideoPlayer({
+  videoId,
+  title,
+  thumbnailAlt,
+}: {
+  videoId: string;
+  title: string;
+  thumbnailAlt?: string;
+}) {
   const [active, setActive] = useState(false);
 
   if (!active) {
@@ -49,7 +58,7 @@ function VideoPlayer({ videoId, title }: { videoId: string; title: string }) {
       >
         <Image
           src={`https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`}
-          alt=""
+          alt={thumbnailAlt ?? ""}
           fill
           sizes="(max-width: 768px) 100vw, 50vw"
           className="object-cover saturate-[0.9] transition-transform duration-300 group-hover:scale-105"
@@ -84,6 +93,7 @@ export function TestimonialCard(props: TestimonialCardProps) {
   const name = fromCopy ? props.testimonial.name : props.name;
   const title = fromCopy ? props.testimonial.companyType : props.title;
   const quote = fromCopy ? props.testimonial.headline : props.quote;
+  const thumbnailAlt = fromCopy ? undefined : props.thumbnailAlt;
 
   return (
     <motion.article
@@ -96,7 +106,11 @@ export function TestimonialCard(props: TestimonialCardProps) {
       className="flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-ink-soft/60 shadow-[0_24px_70px_rgba(0,0,0,0.22)] backdrop-blur-md transition-colors hover:border-white/20"
     >
       {videoId && !placeholder ? (
-        <VideoPlayer videoId={videoId} title={`${name} — ${title}`} />
+        <VideoPlayer
+          videoId={videoId}
+          title={`${name} — ${title}`}
+          thumbnailAlt={thumbnailAlt}
+        />
       ) : (
         <div className="relative aspect-video w-full overflow-hidden bg-ink-elevated">
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-cream/45">
