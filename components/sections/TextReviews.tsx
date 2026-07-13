@@ -1,9 +1,11 @@
-import { ReviewCollage } from "@/components/ui/ReviewCollage";
+import OpinieChat from "@/components/OpinieChat";
+import { CtaButton } from "@/components/ui/CtaButton";
 import { Section } from "@/components/ui/Section";
+import { ctaAriaLabel, PRICE_ANCHOR, withPrice } from "@/config/offer";
 import { copy } from "@/content/copy";
 
 /**
- * Sekcja opinii — zwarty, czytelny układ wyciętych screenshotów.
+ * Sekcja opinii — dymki czatu (wierna rekonstrukcja wiadomości uczestników).
  */
 export function TextReviews() {
   const { textReviews } = copy;
@@ -11,14 +13,25 @@ export function TextReviews() {
   return (
     <Section
       ariaLabel="Opinie uczestników"
-      containerClassName="max-w-6xl"
+      containerClassName="max-w-5xl"
     >
-      <div className="max-w-3xl">
+      <header className="max-w-2xl">
         <h2 className="heading-display text-cream">{textReviews.h2}</h2>
-        <p className="body-copy mt-4 text-base text-cream/70">{textReviews.intro}</p>
+        <p className="body-copy mt-4 text-base text-cream/70 sm:mt-5 sm:text-lg">
+          {textReviews.intro}
+        </p>
+        <p className="mt-3 text-xs text-cream/45">{textReviews.disclaimer}</p>
+      </header>
+
+      <div className="mt-10 sm:mt-14">
+        <OpinieChat />
       </div>
 
-      <ReviewCollage items={textReviews.items} />
+      <div className="mt-12 sm:mt-16">
+        <CtaButton href={PRICE_ANCHOR} ariaLabel={ctaAriaLabel()}>
+          {withPrice(textReviews.cta)}
+        </CtaButton>
+      </div>
     </Section>
   );
 }

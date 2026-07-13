@@ -113,38 +113,11 @@ export const copy = {
   },
 
   textReviews: {
-    h2: "Co mówią po kursie",
-    intro: "Autentyczne wiadomości od uczestników — dokładnie tak, jak przyszły.",
-    items: [
-      {
-        src: "/images/reviews/cutouts/review-1.png",
-        width: 836,
-        height: 709,
-        alt: "Opinia uczestniczki kursu o planowaniu",
-        rotate: -1.5,
-      },
-      {
-        src: "/images/reviews/cutouts/review-2.png",
-        width: 554,
-        height: 1004,
-        alt: "Opinia uczestnika kursu o współpracy z Wiktorem",
-        rotate: 1.2,
-      },
-      {
-        src: "/images/reviews/cutouts/review-3.png",
-        width: 735,
-        height: 1012,
-        alt: "Opinia uczestniczki kursu o zarządzaniu zasobami",
-        rotate: -1,
-      },
-      {
-        src: "/images/reviews/cutouts/review-4.png",
-        width: 857,
-        height: 888,
-        alt: "Opinia uczestnika kursu o planowaniu tygodnia",
-        rotate: 1.5,
-      },
-    ],
+    h2: "Prawdziwe wiadomości po kursie.",
+    intro:
+      "Nie obiecujemy magicznej przemiany. Tak piszą ludzie, którzy zaczęli pracować z zasobami.",
+    disclaimer: "Pisownia oryginalna. Publikujemy za zgodą autorów.",
+    cta: "Odbieram dostęp za [CENA] zł",
   },
 
   author: {
