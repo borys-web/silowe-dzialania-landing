@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { MetaPixel } from "@/components/analytics/MetaPixel";
+import { CookieConsent } from "@/components/ui/CookieConsent";
 import { siteConfig } from "@/content/site.config";
 
 const inter = Inter({
@@ -55,7 +55,7 @@ export default function RootLayout({
     <html lang="pl" className={`${inter.variable} antialiased`}>
       <body className="min-h-dvh bg-ink text-cream">
         {children}
-        <MetaPixel />
+        <CookieConsent />
       </body>
     </html>
   );

@@ -1,3 +1,4 @@
+import { CookieSettingsButton } from "@/components/ui/CookieSettingsButton";
 import { siteConfig } from "@/content/site.config";
 
 /**
@@ -25,6 +26,7 @@ export function Footer() {
           >
             Regulamin
           </a>
+          <CookieSettingsButton className="cursor-pointer transition-colors hover:text-cream focus-visible:text-cream focus-visible:outline-none" />
         </nav>
       </div>
     </footer>
