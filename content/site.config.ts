@@ -57,7 +57,7 @@ export const siteConfig = {
     buyLabel: "Odbieram dostęp",
   },
 
-  metaPixelId: "" as string,
+  metaPixelId: "914723643835064" as string,
 
   flags: {
     showProofSection: true,
