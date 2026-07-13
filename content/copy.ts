@@ -22,7 +22,7 @@ export type Testimonial = {
 export const copy = {
   hero: {
     h1: "Sprawa na 10 minut. Zjadła Ci cały dzień.",
-    body: "Wiesz, co masz robić. Robisz co innego. Nie dlatego, że jesteś leniwy — dlatego, że Twoja głowa pracuje w tle nad tym, czego nie domknąłeś. 4 lekcje. 2 arkusze. Pierwsze ćwiczenie kończysz, zanim wystygnie kawa.",
+    body: "Wiesz, co masz robić. Robisz co innego. To nie lenistwo. Twoja głowa pracuje w tle nad tym, czego nie domknąłeś. 4 lekcje. 2 arkusze. Pierwsze ćwiczenie kończysz, zanim wystygnie kawa.",
     bullets: [
       "Masz firmę i prawie wszystko leci przez Ciebie",
       "Na zewnątrz dowozisz. W środku jedziesz na oparach.",
@@ -36,7 +36,7 @@ export const copy = {
   recognition: {
     h2: "Ten sam dzień. W kółko.",
     cycle: ["Zapał.", "Odcięcie.", "Regeneracja.", "Powtórka."],
-    body: "Zapał. Odcięcie. Regeneracja. Powtórka. Dużo pracy, mało kontroli — a cena (psychiczna, rodzinna) rośnie szybciej niż efekt.",
+    body: "Zapał. Odcięcie. Regeneracja. Powtórka. Dużo pracy, mało kontroli - a cena (psychiczna, rodzinna) rośnie szybciej niż efekt.",
     bullets: [
       "„Zaraz to zrobię.” Tylko że „zaraz” trwa do wieczora.",
       "„Jutro zaczynam.” Tylko że jutro wygląda jak wczoraj.",
@@ -46,13 +46,13 @@ export const copy = {
 
   forWhom: {
     h2: "Dla kogo to jest. I dla kogo zdecydowanie nie.",
-    body: "Jeśli się rozpoznajesz wyżej — sprawdź, czy to faktycznie dla Ciebie. Ten mini-kurs nie jest dla każdego przedsiębiorcy. Jest dla człowieka pod presją, nie z ciekawości.",
+    body: "Jeśli się rozpoznajesz wyżej - sprawdź, czy to faktycznie dla Ciebie. Ten mini-kurs nie jest dla każdego przedsiębiorcy. Jest dla człowieka pod presją, nie z ciekawości.",
     forYou: {
       title: "Dla Ciebie, jeśli:",
       bullets: [
         "prowadzisz firmę i większość decyzji jest na Twojej głowie",
         "dowozisz na zewnątrz, a w środku jedziesz na rezerwie",
-        "jesteś gotów zobaczyć, co realnie zjada Twój czas — nawet jeśli to niewygodne",
+        "jesteś gotów zobaczyć, co realnie zjada Twój czas - nawet jeśli to niewygodne",
       ],
     },
     notForYou: {
@@ -67,7 +67,7 @@ export const copy = {
 
   diagnosis: {
     h2: "Problem nie leży w dyscyplinie.",
-    body: "Dziesięciominutowa sprawa rozciąga się na cały dzień nie dlatego, że jesteś słaby. Dlatego, że głowa w tle pracuje nad czymś innym — sprawą, której nie domknąłeś.",
+    body: "Dziesięciominutowa sprawa rozciąga się na cały dzień nie dlatego, że jesteś słaby. Dlatego, że głowa w tle pracuje nad czymś innym - sprawą, której nie domknąłeś.",
     bullets: [
       "Nie rozpraszają Cię media społecznościowe. Rozpraszają Cię rzeczy, których nigdy nie zacząłeś.",
       "Planujesz dobre rzeczy. W złej kolejności.",
@@ -81,7 +81,7 @@ export const copy = {
    */
   system: {
     h2: "4 lekcje. 2 arkusze. Jeden prosty system na dzień.",
-    body: "Nie dostajesz teorii do obejrzenia kiedyś. Dostajesz pierwszy krok, który robisz dziś — w trakcie kursu.",
+    body: "Zero teorii do obejrzenia kiedyś. Pierwszy krok robisz dziś, w trakcie kursu.",
     lessons: [
       {
         tag: "Lekcja 1",
@@ -105,7 +105,7 @@ export const copy = {
       },
     ] satisfies LessonCard[],
     badges: [
-      "4 lekcje po 10–15 minut",
+      "4 lekcje po 10-15 minut",
       "2 arkusze robocze",
       "dostęp od razu, bez subskrypcji",
     ],
@@ -127,7 +127,7 @@ export const copy = {
 
   proof: {
     h2: "Nie obiecuję. Pokazuję, co się zmieniło u innych.",
-    intro: "Trzy krótkie, konkretne zmiany — nie recenzje, nie gwiazdki.",
+    intro: "Trzy krótkie, konkretne zmiany - nie recenzje, nie gwiazdki.",
     // Nagłówek wzmacniający wiarygodność nad kafelkami testimoniali.
     credibility: "Prawdziwi właściciele firm. Konkretny czyn dokonany, nie opinia.",
     // Case study w formacie wideo-testimonial (struktura jak wiktormariczew.pl).
@@ -162,32 +162,32 @@ export const copy = {
   },
 
   faq: {
-    h2: "Pytania, które wszyscy zadają.",
+    h2: "Zanim się zdecydujesz.",
     items: [
       {
-        question: "Czy to nie jest kolejne naciąganie na hajs?",
+        question: "Czy to nie kolejny kurs, z którego nic nie wynika?",
         answer:
-          "Nie obiecuję Ci transformacji za [CENA]. Dostajesz 4 lekcje i 2 arkusze z jednym celem: po pierwszym ćwiczeniu masz zobaczyć dokładnie, co zjada Twój czas. Jeśli nie zobaczysz nic nowego — piszesz, oddaję pieniądze. Resztę oceniasz sam, dziś wieczorem.",
+          "Nie obiecuję Ci transformacji za [CENA] zł. Dostajesz 4 lekcje i 2 arkusze z jednym celem: po pierwszym ćwiczeniu masz zobaczyć dokładnie, co zjada Twój czas. Nie teorią, tylko na własnym dniu, dziś wieczorem. Resztę oceniasz sam.",
       },
       {
         question: "A jeśli zapłacę i nic się nie zmieni?",
         answer:
-          "Pierwsze ćwiczenie robisz w 30 minut i od razu widzisz efekt — albo nie. Jeśli nie pokaże Ci niczego nowego, dostajesz zwrot. Ryzykujesz jedną kawę, nie weekend.",
+          "Pierwsze ćwiczenie robisz w 30 minut i od razu widzisz efekt - albo nie. Jeśli nie pokaże Ci niczego nowego, dostajesz zwrot. Ryzykujesz jedną kawę, nie weekend.",
       },
       {
         question: "Czy to zadziała u mnie? Mam specyficzną sytuację.",
         answer:
-          "Kurs nie jest o Twojej branży. Jest o tym, jak Twoja głowa pracuje w tle nad sprawami, których nie domknąłeś. To działa tak samo w poligrafii, marketingu i finansach. Specyfiką jest człowiek pod presją — nie rodzaj firmy.",
+          "Kurs nie jest o Twojej branży. Jest o tym, jak Twoja głowa pracuje w tle nad sprawami, których nie domknąłeś. To działa tak samo w poligrafii, marketingu i finansach. Specyfiką jest człowiek pod presją - nie rodzaj firmy.",
       },
       {
-        question: "Czy nie zacznę i nie dokończę — jak z innymi kursami?",
+        question: "Czy nie zacznę i nie dokończę - jak z innymi kursami?",
         answer:
-          "Materiał jest krótki celowo. Nie ma 8 godzin wideo do 'przerobienia kiedyś'. Jest jeden konkretny rezultat na lekcję i pierwszy efekt w 30 minut. Nie ma czego nie dokończyć.",
+          "Materiał jest krótki celowo. Nie ma 8 godzin wideo do „przerobienia kiedyś”. Jest jeden konkretny rezultat na lekcję i pierwszy efekt w 30 minut. Nie ma czego nie dokończyć.",
       },
       {
         question: "Czy po kursie nie wrócę do starego schematu?",
         answer:
-          "Lekcja 4 to system dnia — nie zryw motywacyjny. Nie opierasz się na 'chceniu', tylko na prostym układzie, który działa, gdy motywacji nie ma. Dlatego nie wraca się do punktu zero.",
+          "Lekcja 4 to system dnia - nie zryw motywacyjny. Nie opierasz się na „chceniu”, tylko na prostym układzie, który działa, gdy motywacji nie ma. Dlatego nie wraca się do punktu zero.",
       },
     ] satisfies FaqItem[],
     cta: "Odbieram dostęp za [CENA] zł",
@@ -204,7 +204,7 @@ export const copy = {
     // Tytuł panelu gwarancji (risk reversal).
     guaranteeTitle: "Zero ryzyka po Twojej stronie",
     riskReversal:
-      "Jeśli pierwsze ćwiczenie nie pokaże Ci nic nowego — piszesz, oddajemy pieniądze. Bez pytań. Bez formularzy.",
+      "Jeśli pierwsze ćwiczenie nie pokaże Ci nic nowego - piszesz, oddajemy pieniądze. Bez pytań. Bez formularzy.",
     // Scalone z dawnej sekcji „Zacznij od 30 minut" — co dzieje się po kliknięciu.
     stepsTitle: "Zaczynasz dziś wieczorem.",
     steps: [

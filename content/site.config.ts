@@ -51,7 +51,7 @@ export const siteConfig = {
   currency: OFFER.currency,
 
   cta: {
-    primaryHref: PRICE_ANCHOR,
+    primaryHref: PURCHASE_URL,
     checkoutHref: PURCHASE_URL,
     primaryLabel: "Odbieram dostęp",
     buyLabel: "Odbieram dostęp",
@@ -69,9 +69,9 @@ export const siteConfig = {
     name: "Wiktor Mariczew",
     photo: "/images/wiktor.jpg",
     bio: [
-      "Nazywam się Wiktor Mariczew. Pracuję z właścicielami firm i ludźmi wysokiej odpowiedzialności — takimi, którzy na zewnątrz dowożą, a w środku jadą na rezerwie.",
-      "Nie uczę pozytywnego myślenia. Nie dokładam kolejnej teorii. Nie sprzedaję motywacji. Pokazuję system pracy z zasobami: czasem, energią, uwagą i fokusem.",
-      "Ten mini-kurs to najprostszy pierwszy krok, żeby zobaczyć, gdzie dziś przecieka Twoje działanie — i zatrzymać ten przeciek tego samego wieczoru.",
+      "Nazywam się Wiktor Mariczew. Pracuję z właścicielami firm i ludźmi wysokiej odpowiedzialności - takimi, którzy na zewnątrz dowożą, a w środku jadą na rezerwie.",
+      "Nie uczę pozytywnego myślenia. Nie dokładam kolejnej teorii. Nie sprzedaję motywacji. Pokazuję system pracy z zasobami: czasem, energią i uwagą.",
+      "Ten mini-kurs to najprostszy pierwszy krok, żeby zobaczyć, gdzie dziś przecieka Twoje działanie - i zatrzymać ten przeciek tego samego wieczoru.",
     ],
     facts: [
       {

@@ -9,7 +9,6 @@ import { copy } from "@/content/copy";
 import {
   formatPrice,
   OFFER,
-  PRICE_ANCHOR,
   promoEndsAtIso,
   PURCHASE_URL,
   withPrice,

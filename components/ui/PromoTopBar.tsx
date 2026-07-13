@@ -6,7 +6,7 @@ import {
   formatPrice,
   isPromoActive,
   OFFER,
-  PRICE_ANCHOR,
+  PURCHASE_URL,
   promoEndsAtIso,
   topBarCtaLabel,
 } from "@/config/offer";
@@ -66,10 +66,10 @@ export function PromoTopBar() {
             <span aria-hidden className="h-1.5 w-1.5 shrink-0 rounded-full bg-cream/50" />
             <p className="min-w-0 truncate text-[0.68rem] font-semibold leading-none text-cream/72 sm:text-xs">
               <span className="hidden sm:inline">
-                {formatPrice(OFFER.pricePromo)} zamiast {formatPrice(OFFER.priceRegular)} — oferta kończy się za{" "}
+                {formatPrice(OFFER.pricePromo)} zamiast {formatPrice(OFFER.priceRegular)} - oferta kończy się za{" "}
               </span>
               <span className="sm:hidden">
-                {OFFER.pricePromo} zł zamiast {OFFER.priceRegular} zł — kończy się za{" "}
+                {OFFER.pricePromo} zł zamiast {OFFER.priceRegular} zł - kończy się za{" "}
               </span>
               <Countdown
                 targetIso={promoEndsAt}
@@ -81,7 +81,7 @@ export function PromoTopBar() {
           </div>
 
           <a
-            href={PRICE_ANCHOR}
+            href={PURCHASE_URL}
             aria-label={topBarCtaLabel()}
             className={cn(
               "inline-flex shrink-0 items-center justify-center rounded-full",

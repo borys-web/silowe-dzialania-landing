@@ -8,7 +8,7 @@ import { cn } from "@/lib/cn";
 import { copy } from "@/content/copy";
 import {
   ctaAriaLabel,
-  PRICE_ANCHOR,
+  PURCHASE_URL,
   withPrice,
 } from "@/config/offer";
 import { EASE_HOUSE, VIEWPORT_ONCE } from "@/lib/motion";
@@ -165,7 +165,7 @@ export function Faq() {
           viewport={VIEWPORT_ONCE}
           className="mt-12"
         >
-          <CtaButton href={PRICE_ANCHOR} ariaLabel={ctaAriaLabel()}>
+          <CtaButton href={PURCHASE_URL} ariaLabel={ctaAriaLabel()}>
             {withPrice(faq.cta)}
           </CtaButton>
         </motion.div>

@@ -5,12 +5,12 @@
 export const OFFER = {
   priceRegular: 77,
   pricePromo: 47,
-  promoEndsAt: new Date("2026-07-16T23:59:59+02:00"),
+  promoEndsAt: new Date("2026-07-20T23:59:59+02:00"),
   currency: "zł",
 } as const;
 
 export const PURCHASE_URL =
-  "https://www.naffy.io/silowe-dzialania/planowanie-dlaczego-sie-sypie-i-jak-je-poskladac-tow";
+  "https://www.naffy.io/silowe-dzialania/planowanie";
 
 export const PRICE_ANCHOR = "#cena";
 
@@ -60,9 +60,9 @@ export function topBarCtaLabel(now: number = Date.now()): string {
 
 export function buildSiteTitle(now: number = Date.now()): string {
   if (isPromoActive(now)) {
-    return `Sprawa na 10 minut. Zjadła Ci cały dzień? — mini-kurs (teraz ${OFFER.pricePromo} zł)`;
+    return `Sprawa na 10 minut. Zjadła Ci cały dzień? - mini-kurs (teraz ${OFFER.pricePromo} zł)`;
   }
-  return `Sprawa na 10 minut. Zjadła Ci cały dzień? — mini-kurs (${OFFER.priceRegular} zł)`;
+  return `Sprawa na 10 minut. Zjadła Ci cały dzień? - mini-kurs (${OFFER.priceRegular} zł)`;
 }
 
 export function buildSiteDescription(now: number = Date.now()): string {

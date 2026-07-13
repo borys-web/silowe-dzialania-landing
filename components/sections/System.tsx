@@ -2,7 +2,7 @@ import { cn } from "@/lib/cn";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { PlanningPattern } from "@/components/ui/PlanningPattern";
 import { copy } from "@/content/copy";
-import { ctaAriaLabel, PRICE_ANCHOR, withPrice } from "@/config/offer";
+import { ctaAriaLabel, PURCHASE_URL, withPrice } from "@/config/offer";
 
 /*
   Sekcja „System" — Mechanika / Bundle.
@@ -338,7 +338,7 @@ export function System() {
         {/* CTA — pojedyncze, centralne */}
         <div className="mt-10 flex justify-center">
           <CtaButton
-            href={PRICE_ANCHOR}
+            href={PURCHASE_URL}
             ariaLabel={ctaAriaLabel()}
             className="text-lg"
           >

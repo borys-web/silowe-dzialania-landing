@@ -27,7 +27,7 @@ export function Testimonials() {
     >
       <div className="mb-8 max-w-3xl md:mb-10">
         <h2 className="font-display text-3xl font-extrabold tracking-[-0.05em] text-cream md:text-5xl">
-          Z kim pracuje Wiktor — i co się u nich zmieniło.
+          Z kim pracuje Wiktor - i co się u nich zmieniło.
         </h2>
         <p className="body-copy mt-4 text-base text-cream/70 sm:text-lg">
           Efekty pracy z Wiktorem. Ten mini-kurs to jej pierwszy krok.

@@ -1,7 +1,7 @@
 import OpinieChat from "@/components/OpinieChat";
 import { CtaButton } from "@/components/ui/CtaButton";
 import { Section } from "@/components/ui/Section";
-import { ctaAriaLabel, PRICE_ANCHOR, withPrice } from "@/config/offer";
+import { ctaAriaLabel, PURCHASE_URL, withPrice } from "@/config/offer";
 import { copy } from "@/content/copy";
 
 /**
@@ -28,7 +28,7 @@ export function TextReviews() {
       </div>
 
       <div className="mt-12 sm:mt-16">
-        <CtaButton href={PRICE_ANCHOR} ariaLabel={ctaAriaLabel()}>
+        <CtaButton href={PURCHASE_URL} ariaLabel={ctaAriaLabel()}>
           {withPrice(textReviews.cta)}
         </CtaButton>
       </div>

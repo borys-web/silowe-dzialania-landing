@@ -14,7 +14,7 @@ import { PlanningPattern } from "@/components/ui/PlanningPattern";
 import {
   ctaAriaLabel,
   heroEyebrow,
-  PRICE_ANCHOR,
+  PURCHASE_URL,
   withPrice,
 } from "@/config/offer";
 import { copy } from "@/content/copy";
@@ -164,7 +164,7 @@ export function Hero() {
 
                   <div className="pt-1">
                     <CtaButton
-                      href={PRICE_ANCHOR}
+                      href={PURCHASE_URL}
                       ariaLabel={ctaAriaLabel()}
                       className="w-full text-lg sm:w-auto"
                       redThreadNode="cta"

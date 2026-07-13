@@ -7,7 +7,7 @@ import {
   formatPrice,
   isPromoActive,
   OFFER,
-  PRICE_ANCHOR,
+  PURCHASE_URL,
   promoEndsAtIso,
   ctaAriaLabel,
 } from "@/config/offer";
@@ -85,7 +85,7 @@ export function StickyMobileCta() {
             </div>
 
             <a
-              href={PRICE_ANCHOR}
+              href={PURCHASE_URL}
               aria-label={ctaAriaLabel()}
               className="inline-flex min-h-[48px] shrink-0 items-center justify-center rounded-full border border-white/10 bg-white/[0.05] px-6 py-3 text-base font-semibold text-white shadow-[0_14px_34px_rgba(0,0,0,0.24)] backdrop-blur-2xl transition-[background-color,border-color] duration-200 hover:border-white/20 hover:bg-white/[0.08] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cream"
             >
